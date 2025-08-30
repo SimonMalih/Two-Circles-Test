@@ -65,6 +65,11 @@
 			path = UITests;
 			sourceTree = "<group>";
 		};
+		F4A364362E638FB900415241 /* Resources */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = Resources;
+			sourceTree = "<group>";
+		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,6 +102,7 @@
 			isa = PBXGroup;
 			children = (
 				2ECFC3BF2E5F3CE10013C70F /* Sources */,
+				F4A364362E638FB900415241 /* Resources */,
 				2ECFC3CD2E5F3CE20013C70F /* Tests */,
 				2ECFC3D72E5F3CE20013C70F /* UITests */,
 				2ECFC4872E5F4D180013C70F /* Frameworks */,
@@ -140,6 +146,7 @@
 			);
 			fileSystemSynchronizedGroups = (
 				2ECFC3BF2E5F3CE10013C70F /* Sources */,
+				F4A364362E638FB900415241 /* Resources */,
 			);
 			name = SuperScoreboard;
 			packageProductDependencies = (
@@ -359,6 +366,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
@@ -415,6 +423,7 @@
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_EMIT_LOC_STRINGS = YES;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
