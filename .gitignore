@@ -148,6 +148,8 @@ iOSInjectionProject/
 .cursor/
 .gemini/
 CLAUDE.md
+GEMINI.md
+docs/
 
 # Local environment files (contains sensitive tokens)
 .env.local
