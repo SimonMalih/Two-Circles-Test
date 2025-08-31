@@ -43,6 +43,17 @@
         }
       }
     },
+    "follow_favourites_description" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Add your favourite athletes, teams & competitions to see the scores you care about"
+          }
+        }
+      }
+    },
     "follow_teams_description" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -50,6 +61,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Select your favorite clubs to get personalized updates and highlights"
+          }
+        }
+      }
+    },
+    "follow_your_favourites" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Follow your favourites"
           }
         }
       }
@@ -137,8 +159,16 @@
     "OK" : {
 
     },
-    "Refresh" : {
-
+    "refresh" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Refresh"
+          }
+        }
+      }
     },
     "save" : {
       "extractionState" : "manual",

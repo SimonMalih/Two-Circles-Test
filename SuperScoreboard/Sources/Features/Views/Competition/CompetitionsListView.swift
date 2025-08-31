@@ -63,14 +63,14 @@ struct CompetitionsListView: View {
                         .padding(.top, 8)
                 }
                 
+                if !viewModel.sectionsData.isEmpty {
                 // Show content if available
                 ForEach(viewModel.sectionsData, id: \.title) { section in
                     CompetitionSectionView(sectionData: section)
                 }
                 
                 // Start Following card at the bottom (only when data exists)
-                if !viewModel.sectionsData.isEmpty {
-                    StartFollowingCardView {
+                    FollowYourFavouritesCardView {
                         showingFavorites = true
                     }
                 }
@@ -101,7 +101,7 @@ struct CompetitionsListView: View {
                 .foregroundColor(.secondary)
                 .multilineTextAlignment(.center)
             
-            Button("Refresh") {
+            Button("refresh") {
                 Task {
                     await viewModel.fetchMatches()
                 }
