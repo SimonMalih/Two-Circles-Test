@@ -7,7 +7,9 @@
 
 import SwiftUI
 
+/// Applies a custom font and color to a view.
 struct CustomFontModifier: ViewModifier {
+    
     let customFont: CustomFont
     let color: Color
     
