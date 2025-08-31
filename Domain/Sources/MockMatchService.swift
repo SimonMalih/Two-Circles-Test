@@ -1,12 +1,12 @@
 import Foundation
 
+public enum MockError: Error {
+    case simulatedFailure
+}
+
 /// Simple mock MatchService implementation for testing
 public final class MockMatchService: MatchService {
-    
-    public enum MockError: Error {
-        case simulatedFailure
-    }
-    
+
     private let matches: [Match]
     private let shouldFail: Bool
     
