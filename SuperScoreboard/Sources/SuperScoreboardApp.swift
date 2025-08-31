@@ -4,7 +4,7 @@ import SwiftUI
 struct SuperScoreboardApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            CompetitionsView()
         }
     }
 }
