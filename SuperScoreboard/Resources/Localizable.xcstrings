@@ -1,7 +1,171 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "" : {
 
+    },
+    "%lld selected" : {
+
+    },
+    "check_back_later" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Check back later for upcoming fixtures and live scores"
+          }
+        }
+      }
+    },
+    "Done" : {
+
+    },
+    "Error" : {
+
+    },
+    "failed_to_display_matches" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Failed to display matches"
+          }
+        }
+      }
+    },
+    "follow_teams_description" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Select your favorite clubs to get personalized updates and highlights"
+          }
+        }
+      }
+    },
+    "follow_your_teams" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Follow Your Teams"
+          }
+        }
+      }
+    },
+    "Font Test" : {
+
+    },
+    "font_system_test" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Font System Test"
+          }
+        }
+      }
+    },
+    "live" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "LIVE"
+          }
+        }
+      }
+    },
+    "loading_clubs" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Loading clubs..."
+          }
+        }
+      }
+    },
+    "match_data_unavailable" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Match data is not available. Please try again later."
+          }
+        }
+      }
+    },
+    "no_clubs_available" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No Clubs Available"
+          }
+        }
+      }
+    },
+    "no_matches_today" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No matches today"
+          }
+        }
+      }
+    },
+    "OK" : {
+
+    },
+    "Refresh" : {
+
+    },
+    "Save Favorites" : {
+
+    },
+    "Saving..." : {
+
+    },
+    "Select Favorites" : {
+
+    },
+    "start_following" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Start Following"
+          }
+        }
+      }
+    },
+    "Try Again" : {
+
+    },
+    "two_circles_awesome" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Two Circles is an awesome company!"
+          }
+        }
+      }
+    }
   },
   "version" : "1.0"
 }
