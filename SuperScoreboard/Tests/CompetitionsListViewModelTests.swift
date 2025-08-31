@@ -8,9 +8,8 @@ import Core
     @Test("fetchMatches with successful data loads matches and updates state to loaded")
     func fetchMatches_withSuccessfulData_loadsMatchesAndUpdatesStateToLoaded() async throws {
         // Given
-        let (sut, mockService) = makeViewModelAndMockService()
         let expectedMatches = Match.previewMatches
-        mockService.setMatches(expectedMatches)
+        let sut = makeViewModel(matches: expectedMatches)
         
         // When
         await sut.fetchMatches()
@@ -24,8 +23,7 @@ import Core
     @Test("fetchMatches with empty data updates state to empty")
     func fetchMatches_withEmptyData_updatesStateToEmpty() async throws {
         // Given
-        let (sut, mockService) = makeViewModelAndMockService()
-        mockService.setMatches([])
+        let sut = makeViewModel(matches: [])
         
         // When
         await sut.fetchMatches()
@@ -39,8 +37,7 @@ import Core
     @Test("fetchMatches with service failure updates state to error and clears data")
     func fetchMatches_withServiceFailure_updatesStateToErrorAndClearsData() async throws {
         // Given
-        let (sut, mockService) = makeViewModelAndMockService()
-        mockService.setShouldFail(true)
+        let sut = makeViewModel(shouldFail: true)
         
         // When
         await sut.fetchMatches()
@@ -54,8 +51,7 @@ import Core
     @Test("fetchMatches sets loading state initially")
     func fetchMatches_setsLoadingStateInitially() async throws {
         // Given
-        let (sut, mockService) = makeViewModelAndMockService()
-        mockService.setMatches(Match.previewMatches)
+        let sut = makeViewModel(matches: Match.previewMatches)
         
         // When
         let fetchTask = Task {
@@ -73,11 +69,10 @@ import Core
     @Test("calculateSectionsData groups matches by competition title")
     func calculateSectionsData_groupsMatchesByCompetitionTitle() async throws {
         // Given
-        let (sut, mockService) = makeViewModelAndMockService()
         let premierLeagueMatch = makeMatch(competition: .premierLeague)
         let championshipMatch = makeMatch(competition: Competition(id: 2, title: "Championship"))
         let matches = [premierLeagueMatch, championshipMatch]
-        mockService.setMatches(matches)
+        let sut = makeViewModel(matches: matches)
         
         // When
         await sut.fetchMatches()
@@ -91,11 +86,10 @@ import Core
     @Test("calculateSectionsData handles matches with nil competition")
     func calculateSectionsData_handlesMatchesWithNilCompetition() async throws {
         // Given
-        let (sut, mockService) = makeViewModelAndMockService()
         let matchWithCompetition = makeMatch(competition: .premierLeague)
         let matchWithoutCompetition = makeMatch(competition: nil)
         let matches = [matchWithCompetition, matchWithoutCompetition]
-        mockService.setMatches(matches)
+        let sut = makeViewModel(matches: matches)
         
         // When
         await sut.fetchMatches()
@@ -109,11 +103,10 @@ import Core
     @Test("calculateSectionsData filters out matches with fewer than 2 teams")
     func calculateSectionsData_filtersOutMatchesWithFewerThanTwoTeams() async throws {
         // Given
-        let (sut, mockService) = makeViewModelAndMockService()
         let validMatch = makeMatch(teams: [.arsenal, .liverpool])
         let invalidMatch = makeMatch(teams: [.arsenal])
         let matches = [validMatch, invalidMatch]
-        mockService.setMatches(matches)
+        let sut = makeViewModel(matches: matches)
         
         // When
         await sut.fetchMatches()
@@ -126,13 +119,12 @@ import Core
     @Test("calculateSectionsData sorts competition sections alphabetically")
     func calculateSectionsData_sortsCompetitionSectionsAlphabetically() async throws {
         // Given
-        let (sut, mockService) = makeViewModelAndMockService()
         let matches = [
             makeMatch(competition: .premierLeague),
             makeMatch(competition: Competition(id: 2, title: "Championship")),
             makeMatch(competition: Competition(id: 3, title: "League One"))
         ]
-        mockService.setMatches(matches)
+        let sut = makeViewModel(matches: matches)
         
         // When
         await sut.fetchMatches()
@@ -145,11 +137,10 @@ import Core
     @Test("createMatchCardData creates valid data for match with two teams")
     func createMatchCardData_createsValidDataForMatchWithTwoTeams() async throws {
         // Given
-        let (sut, mockService) = makeViewModelAndMockService()
         let homeTeam = makeMatchTeam(team: .arsenal, score: 2)
         let awayTeam = makeMatchTeam(team: .liverpool, score: 1)
         let match = makeMatch(teams: [homeTeam, awayTeam])
-        mockService.setMatches([match])
+        let sut = makeViewModel(matches: [match])
         
         // When
         await sut.fetchMatches()
@@ -166,11 +157,10 @@ import Core
     @Test("createMatchCardData handles matches with nil scores")
     func createMatchCardData_handlesMatchesWithNilScores() async throws {
         // Given
-        let (sut, mockService) = makeViewModelAndMockService()
         let homeTeam = makeMatchTeam(team: .arsenal, score: nil)
         let awayTeam = makeMatchTeam(team: .liverpool, score: nil)
         let match = makeMatch(teams: [homeTeam, awayTeam])
-        mockService.setMatches([match])
+        let sut = makeViewModel(matches: [match])
         
         // When
         await sut.fetchMatches()
@@ -185,10 +175,9 @@ import Core
     @Test("createCompetitionSection includes competition data")
     func createCompetitionSection_includesCompetitionData() async throws {
         // Given
-        let (sut, mockService) = makeViewModelAndMockService()
         let competition = Competition.premierLeague
         let match = makeMatch(competition: competition)
-        mockService.setMatches([match])
+        let sut = makeViewModel(matches: [match])
         
         // When
         await sut.fetchMatches()
@@ -202,11 +191,10 @@ import Core
     @Test("createCompetitionSection excludes invalid matches")
     func createCompetitionSection_excludesInvalidMatches() async throws {
         // Given
-        let (sut, mockService) = makeViewModelAndMockService()
         let validMatch = makeMatch(teams: [.arsenal, .liverpool])
         let invalidMatch = makeMatch(teams: [.arsenal])
         let matches = [validMatch, invalidMatch]
-        mockService.setMatches(matches)
+        let sut = makeViewModel(matches: matches)
         
         // When
         await sut.fetchMatches()
@@ -238,12 +226,13 @@ import Core
     @Test("viewModel maintains state consistency during multiple fetch operations")
     func viewModel_maintainsStateConsistencyDuringMultipleFetchOperations() async throws {
         // Given
-        let (sut, mockService) = makeViewModelAndMockService()
         let firstMatches = [makeMatch(competition: .premierLeague)]
         let secondMatches = [makeMatch(competition: Competition(id: 2, title: "Championship"))]
+        let mockStorage = FavoritesStorageMediator.mock()
         
         // When - First fetch
-        mockService.setMatches(firstMatches)
+        let firstMockService = MockMatchService(matches: firstMatches)
+        let sut = CompetitionsListViewModel(matchService: firstMockService, storageMediator: mockStorage)
         await sut.fetchMatches()
         
         // Then - First state
@@ -252,15 +241,16 @@ import Core
         #expect(sut.sectionsData.count == 1)
         #expect(sut.sectionsData.first?.title == "Premier League")
         
-        // When - Second fetch
-        mockService.setMatches(secondMatches)
-        await sut.fetchMatches()
+        // When - Second fetch with new service
+        let secondMockService = MockMatchService(matches: secondMatches)
+        let sutWithNewService = CompetitionsListViewModel(matchService: secondMockService, storageMediator: mockStorage)
+        await sutWithNewService.fetchMatches()
         
         // Then - Second state
-        #expect(sut.viewState == .loaded)
-        #expect(sut.matches.count == secondMatches.count)
-        #expect(sut.sectionsData.count == 1)
-        #expect(sut.sectionsData.first?.title == "Championship")
+        #expect(sutWithNewService.viewState == .loaded)
+        #expect(sutWithNewService.matches.count == secondMatches.count)
+        #expect(sutWithNewService.sectionsData.count == 1)
+        #expect(sutWithNewService.sectionsData.first?.title == "Championship")
     }
 }
 
@@ -268,14 +258,13 @@ import Core
 
 private extension CompetitionsListViewModelTests {
     
-    func makeViewModelAndMockService() -> (sut: CompetitionsListViewModel, mockService: ConfigurableMockMatchService) {
-        let mockService = ConfigurableMockMatchService()
+    func makeViewModel(matches: [Match] = [], shouldFail: Bool = false) -> CompetitionsListViewModel {
+        let mockService = MockMatchService(matches: matches, shouldFail: shouldFail)
         let mockStorage = FavoritesStorageMediator.mock()
-        let sut = CompetitionsListViewModel(
+        return CompetitionsListViewModel(
             matchService: mockService,
             storageMediator: mockStorage
         )
-        return (sut, mockService)
     }
     
     func makeMatch(
@@ -303,28 +292,6 @@ private extension CompetitionsListViewModelTests {
     }
     
     func makeMatchTeam(team: Team, score: Int? = nil) -> MatchTeam {
-        return MatchTeam(team: team, score: score)
-    }
-}
-
-// MARK: - Configurable Mock Service
-
-private final class ConfigurableMockMatchService: MatchService {
-    private var matches: [Match] = []
-    private var shouldFail = false
-    
-    func setMatches(_ matches: [Match]) {
-        self.matches = matches
-    }
-    
-    func setShouldFail(_ shouldFail: Bool) {
-        self.shouldFail = shouldFail
-    }
-    
-    func fetchMatches() async throws -> [Match] {
-        if shouldFail {
-            throw MockMatchService.MockError.simulatedFailure
-        }
-        return matches
+        MatchTeam(team: team, score: score)
     }
 }
