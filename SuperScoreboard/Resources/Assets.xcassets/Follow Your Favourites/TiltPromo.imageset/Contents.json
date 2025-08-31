@@ -1,6 +1,7 @@
 {
-  "colors" : [
+  "images" : [
     {
+      "filename" : "TiltPromo.svg",
       "idiom" : "universal"
     }
   ],
