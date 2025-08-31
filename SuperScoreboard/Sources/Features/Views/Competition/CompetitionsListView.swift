@@ -85,11 +85,8 @@ struct CompetitionsListView: View {
     
     // TODO: update colour of spinner
     private var loadingSpinner: some View {
-        VStack {
-            Spacer()
-            LoadingSpinnerView()
-            Spacer()
-        }
+        LoadingSpinnerView()
+            .fillSpace()
     }
     
     private var emptyState: some View {
