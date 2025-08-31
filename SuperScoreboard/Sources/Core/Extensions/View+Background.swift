@@ -26,7 +26,7 @@ extension View {
     }
     
     /// Fill the space around the views area
-    private func fillSpace() -> some View {
+    func fillSpace() -> some View {
         HStack {
             Spacer()
             VStack {
