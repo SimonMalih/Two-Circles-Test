@@ -13,8 +13,6 @@ extension MatchCardData {
         awayTeam: .arsenal,
         homeScore: "1",
         awayScore: "2",
-        homeTeamAbbr: Team.liverpool.shortName,
-        awayTeamAbbr: Team.arsenal.shortName,
         shouldShowScores: false,
         match: .upcoming
     )
@@ -24,8 +22,6 @@ extension MatchCardData {
         awayTeam: .newcastle,
         homeScore: "2",
         awayScore: "1",
-        homeTeamAbbr: Team.manUtd.shortName,
-        awayTeamAbbr: Team.newcastle.shortName,
         shouldShowScores: true,
         match: .live
     )
@@ -35,9 +31,50 @@ extension MatchCardData {
         awayTeam: .brighton,
         homeScore: "1",
         awayScore: "3",
-        homeTeamAbbr: Team.westHam.shortName,
-        awayTeamAbbr: Team.brighton.shortName,
         shouldShowScores: true,
         match: .completed
     )
+    
+    static let premierLeagueMatches: [MatchCardData] = [
+        MatchCardData(
+            homeTeam: .arsenal,
+            awayTeam: .liverpool,
+            homeScore: "2",
+            awayScore: "1",
+            shouldShowScores: true,
+            match: .completed
+        ),
+        MatchCardData(
+            homeTeam: .manUtd,
+            awayTeam: .brighton,
+            homeScore: "1",
+            awayScore: "1",
+            shouldShowScores: true,
+            match: .live
+        ),
+        MatchCardData(
+            homeTeam: .newcastle,
+            awayTeam: .westHam,
+            homeScore: "0",
+            awayScore: "0",
+            shouldShowScores: false,
+            match: .upcoming
+        ),
+        MatchCardData(
+            homeTeam: .southampton,
+            awayTeam: .nottinghamForest,
+            homeScore: "0",
+            awayScore: "2",
+            shouldShowScores: true,
+            match: .completed
+        ),
+        MatchCardData(
+            homeTeam: .bournemouth,
+            awayTeam: .ipswichTown,
+            homeScore: "3",
+            awayScore: "1",
+            shouldShowScores: true,
+            match: .completed
+        )
+    ]
 }

@@ -20,4 +20,15 @@ extension Int64 {
         dateFormatter.dateFormat = "HH:mm"
         return dateFormatter.string(from: date)
     }
+    
+    // MARK: - Mock Timestamps
+    
+    /// Mon 31 Dec 2024, 18:00 GMT
+    static let completedMatchKickoff: Int64 = 1735653600000
+    
+    /// Mon 31 Dec 2024, 19:00 GMT
+    static let liveMatchKickoff: Int64 = 1735657200000
+    
+    /// Mon 31 Dec 2024, 20:00 GMT
+    static let upcomingMatchKickoff: Int64 = 1735660800000
 }

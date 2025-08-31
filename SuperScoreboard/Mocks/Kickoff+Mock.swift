@@ -11,19 +11,19 @@ import Domain
 extension Kickoff {
     static let upcoming = Kickoff(
         completeness: 3,
-        millis: Int64(Date().timeIntervalSince1970 * 1000 + 3600),
-        label: "15:00"
+        millis: .upcomingMatchKickoff,
+        label: "20:00"
     )
     
     static let live = Kickoff(
         completeness: 3,
-        millis: Int64(Date().timeIntervalSince1970 * 1000 - 3600),
+        millis: .liveMatchKickoff,
         label: ""
     )
     
     static let completed = Kickoff(
         completeness: 3,
-        millis: Int64(Date().timeIntervalSince1970 * 1000 - 7200),
+        millis: .completedMatchKickoff,
         label: ""
     )
 }
