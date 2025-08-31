@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		2ECFC4892E5F4D180013C70F /* Domain.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2ECFC4882E5F4D180013C70F /* Domain.framework */; };
 		2ECFC48A2E5F4D180013C70F /* Domain.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2ECFC4882E5F4D180013C70F /* Domain.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		2ECFC48C2E5F4D180013C70F /* Core.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2ECFC48D2E5F4D180013C70F /* Core.framework */; };
+		2ECFC48E2E5F4D180013C70F /* Core.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2ECFC48D2E5F4D180013C70F /* Core.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +38,7 @@
 			dstSubfolderSpec = 10;
 			files = (
 				2ECFC48A2E5F4D180013C70F /* Domain.framework in Embed Frameworks */,
+				2ECFC48E2E5F4D180013C70F /* Core.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -47,6 +50,7 @@
 		2ECFC3CA2E5F3CE20013C70F /* SuperScoreboardTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SuperScoreboardTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2ECFC3D42E5F3CE20013C70F /* SuperScoreboardUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SuperScoreboardUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2ECFC4882E5F4D180013C70F /* Domain.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Domain.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		2ECFC48D2E5F4D180013C70F /* Core.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Core.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F4A3648B2E644DCE00415241 /* SuperScoreboard-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "SuperScoreboard-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -84,6 +88,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2ECFC4892E5F4D180013C70F /* Domain.framework in Frameworks */,
+				2ECFC48C2E5F4D180013C70F /* Core.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -132,6 +137,7 @@
 			isa = PBXGroup;
 			children = (
 				2ECFC4882E5F4D180013C70F /* Domain.framework */,
+				2ECFC48D2E5F4D180013C70F /* Core.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
