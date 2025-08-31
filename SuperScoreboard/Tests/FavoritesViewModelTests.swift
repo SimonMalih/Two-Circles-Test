@@ -149,7 +149,7 @@ import Core
     @Test("saveFavorites successfully saves selected clubs")
     func saveFavorites_successfullySavesSelectedClubs() async throws {
         // Given
-        let (sut, _) = makeFavoritesViewModelAndStorage()
+        let sut = makeFavoritesViewModel()
         let clubId = 42
         sut.selectedClubIds.insert(clubId)
         
@@ -165,7 +165,7 @@ import Core
     @Test("saveFavorites sets loading state during operation")
     func saveFavorites_setsLoadingStateDuringOperation() async throws {
         // Given
-        let (sut, _) = makeFavoritesViewModelAndStorage()
+        let sut = makeFavoritesViewModel()
         sut.selectedClubIds.insert(42)
         
         // When
@@ -179,7 +179,7 @@ import Core
     @Test("saveFavorites handles storage failure")
     func saveFavorites_handlesStorageFailure() async throws {
         // Given
-        let (sut, _) = makeFavoritesViewModelAndStorage(shouldFail: true)
+        let sut = makeFavoritesViewModel(shouldFail: true)
         sut.selectedClubIds.insert(42)
         
         // When
@@ -209,7 +209,7 @@ import Core
     @Test("clearAllSelections removes all selections and favorites")
     func clearAllSelections_removesAllSelectionsAndFavorites() async throws {
         // Given
-        let (sut, _) = makeFavoritesViewModelAndStorage(favoriteIds: [1, 2, 3])
+        let sut = makeFavoritesViewModel(favoriteIds: [1, 2, 3])
         
         // When
         await sut.clearAllSelections()
@@ -224,7 +224,7 @@ import Core
     @Test("clearAllSelections sets loading state during operation")
     func clearAllSelections_setsLoadingStateDuringOperation() async throws {
         // Given
-        let (sut, _) = makeFavoritesViewModelAndStorage(favoriteIds: [1, 2, 3])
+        let sut = makeFavoritesViewModel(favoriteIds: [1, 2, 3])
         
         // When
         await sut.clearAllSelections()
@@ -239,7 +239,7 @@ import Core
     @Test("clearAllSelections handles storage failure")
     func clearAllSelections_handlesStorageFailure() async throws {
         // Given
-        let (sut, _) = makeFavoritesViewModelAndStorage(
+        let sut = makeFavoritesViewModel(
             favoriteIds: [1, 2, 3],
             shouldFail: true
         )
@@ -368,7 +368,7 @@ import Core
     func viewModel_maintainsStateConsistencyDuringMultipleOperations() async throws {
         // Given
         let matches = Match.previewMatches
-        let (sut, _) = makeFavoritesViewModelAndStorage(matches: matches)
+        let sut = makeFavoritesViewModel(matches: matches)
         let club = sut.availableClubs.first!
         
         // When & Then - Add selection
@@ -410,21 +410,5 @@ private extension FavoritesViewModelTests {
             storageMediator: storageMediator,
             matches: matches
         )
-    }
-    
-    func makeFavoritesViewModelAndStorage(
-        favoriteIds: [Int] = [],
-        matches: [Match] = [],
-        shouldFail: Bool = false
-    ) -> (sut: FavoritesViewModel, storage: FavoritesStorageMediator) {
-        let storageMediator = FavoritesStorageMediator.mock(
-            favoriteIds: favoriteIds,
-            shouldFail: shouldFail
-        )
-        let sut = FavoritesViewModel(
-            storageMediator: storageMediator,
-            matches: matches
-        )
-        return (sut, storageMediator)
     }
 }
