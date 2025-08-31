@@ -20,7 +20,7 @@ struct FontTestView: View {
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 24) {
-                Text("Font System Test")
+                Text("font_system_test")
                     .font(.largeTitle)
                     .fontWeight(.bold)
                 
@@ -30,7 +30,7 @@ struct FontTestView: View {
                             .foregroundColor(.blue)
                         
                         ForEach(colors.sorted(by: { $0.key < $1.key }), id: \.key) { colorName, color in
-                            Text("Two Circles is an awesome company!")
+                            Text("two_circles_awesome")
                                 .customFont(font, color: color)
                                 .padding(.horizontal, 16)
                                 .padding(.vertical, 8)
