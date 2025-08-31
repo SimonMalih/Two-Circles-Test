@@ -11,18 +11,9 @@ import Core
 
 // Main screen displaying football matches organized by competition
 struct CompetitionsListView: View {
-    @State private var viewModel: CompetitionsViewModel = CompetitionsViewModel()
+    let viewModel: CompetitionsListViewModel
     @State private var showingFavorites = false
     @State private var isFirstLoad = true
-    
-    private let storage = UserDefaultsStorageAPI()
-    private let mediator: FavoritesStorageMediator
-    private let favoritesManager: FavoritesManager
-    
-    init() {
-        self.mediator = FavoritesStorageMediator(storageAPI: storage)
-        self.favoritesManager = FavoritesManager(storageMediator: mediator)
-    }
     
     var body: some View {
         NavigationStack {
@@ -32,23 +23,23 @@ struct CompetitionsListView: View {
                 } else {
                     switch viewModel.viewState {
                     case .loading, .loaded:
-                        mainContentView
+                        competionsList
                     case .empty:
-                        emptyStateView
+                        emptyState
                     case .error:
-                        errorStateView
+                        errorState
                     }
                 }
             }
             .padding(.horizontal, 16)
-            .addFullscreenBackground()
+            .addBackground()
             .navigationTitle("")
             .toolbarBackground(.surfaceBase, for: .navigationBar)
             .toolbarBackgroundVisibility(.visible, for: .navigationBar)
             .navigationDestination(isPresented: $showingFavorites) {
                 FavoritesView(
                     viewModel: FavoritesViewModel(
-                        favoritesManager: favoritesManager,
+                        storageMediator: viewModel.storageMediator,
                         matches: viewModel.matches
                     )
                 )
@@ -62,8 +53,8 @@ struct CompetitionsListView: View {
         }
     }
     
-    private var mainContentView: some View {
-        ScrollView {
+    private var competionsList: some View {
+        ScrollView(showsIndicators: false) {
             LazyVStack(spacing: 0) {
                 // Show top loading indicator during refresh (not first load)
                 if case .loading = viewModel.viewState {
@@ -101,7 +92,7 @@ struct CompetitionsListView: View {
         }
     }
     
-    private var emptyStateView: some View {
+    private var emptyState: some View {
         VStack(spacing: 16) {
             Text("no_matches_today")
                 .font(.title2)
@@ -112,7 +103,6 @@ struct CompetitionsListView: View {
                 .font(.body)
                 .foregroundColor(.secondary)
                 .multilineTextAlignment(.center)
-                .padding(.horizontal, 32)
             
             Button("Refresh") {
                 Task {
@@ -123,7 +113,7 @@ struct CompetitionsListView: View {
         }
     }
     
-    private var errorStateView: some View {
+    private var errorState: some View {
         VStack(spacing: 16) {
             Text("failed_to_display_matches")
                 .font(.title2)
@@ -146,7 +136,29 @@ struct CompetitionsListView: View {
     }
 }
 
-// TODO: to pass in objects so we can mock empty and error states
-#Preview {
-    CompetitionsListView()
+#Preview("Loaded State") {
+    CompetitionsListView(
+        viewModel: CompetitionsListViewModel(
+            matchService: MockMatchService.loaded,
+            storageMediator: .preview
+        )
+    )
+}
+
+#Preview("Empty State") {
+    CompetitionsListView(
+        viewModel: CompetitionsListViewModel(
+            matchService: MockMatchService.empty,
+            storageMediator: .empty
+        )
+    )
+}
+
+#Preview("Error State") {
+    CompetitionsListView(
+        viewModel: CompetitionsListViewModel(
+            matchService: MockMatchService.error,
+            storageMediator: .failing
+        )
+    )
 }

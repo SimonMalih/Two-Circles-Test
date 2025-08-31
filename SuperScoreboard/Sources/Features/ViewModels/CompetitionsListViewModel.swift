@@ -1,5 +1,5 @@
 //
-//  CompetitionsViewModel.swift
+//  CompetitionsListViewModel.swift
 //  SuperScoreboard
 //
 //  Created by Simon Malih on 31/08/2025.
@@ -7,21 +7,29 @@
 
 import Observation
 import Domain
+import Core
 
 @Observable
-final class CompetitionsViewModel {
+final class CompetitionsListViewModel {
     
     var matches: [Match] = []
     var viewState: ViewState = .loading
     var sectionsData: [CompetitionSectionData] = []
+    
+    private let matchService: MatchService
+    let storageMediator: FavoritesStorageMediator
+    
+    init(matchService: MatchService, storageMediator: FavoritesStorageMediator) {
+        self.matchService = matchService
+        self.storageMediator = storageMediator
+    }
     
     @MainActor
     func fetchMatches() async {
         viewState = .loading
         
         do {
-            // TODO: add support for mocking
-            matches = try await DataSourceFactory.matchesDataSource().execute()
+            matches = try await matchService.fetchMatches()
             sectionsData = calculateSectionsData(from: matches)
             
             viewState = sectionsData.isEmpty ? .empty : .loaded
@@ -35,7 +43,7 @@ final class CompetitionsViewModel {
 
 // MARK: - Data Filtering and Transformation
 
-private extension CompetitionsViewModel {
+private extension CompetitionsListViewModel {
     private func calculateSectionsData(from matches: [Match]) -> [CompetitionSectionData] {
         let validMatches = matches.filter { $0.teams.count >= 2 }
         let groupedMatches = Dictionary(grouping: validMatches) { match in
