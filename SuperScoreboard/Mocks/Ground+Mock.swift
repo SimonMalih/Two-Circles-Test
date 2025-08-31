@@ -1,3 +1,10 @@
+//
+//  Ground+Mock.swift
+//  SuperScoreboard
+//
+//  Created by Simon Malih on 30/08/2025.
+//
+
 import Domain
 
 extension Ground {

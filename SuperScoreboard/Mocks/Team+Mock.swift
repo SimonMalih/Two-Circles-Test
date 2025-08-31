@@ -1,66 +1,100 @@
+//
+//  Team+Mock.swift
+//  SuperScoreboard
+//
+//  Created by Simon Malih on 30/08/2025.
+//
+
 import Domain
 
 extension Team {
-    static let liverpool = Team(
-        id: 1,
-        name: "Liverpool",
-        shortName: "Liverpool",
-        teamType: "FIRST",
-        club: .liverpool,
-        altIds: nil
-    )
-    
     static let arsenal = Team(
-        id: 2,
+        id: 1,
         name: "Arsenal",
-        shortName: "Arsenal",
+        shortName: "ARS",
         teamType: "FIRST",
         club: .arsenal,
         altIds: nil
     )
     
-    static let psg = Team(
-        id: 3,
-        name: "Paris Saint-Germain",
-        shortName: "PSG",
+    static let ipswichTown = Team(
+        id: 8,
+        name: "Ipswich Town",
+        shortName: "IPS",
         teamType: "FIRST",
-        club: .psg,
+        club: .ipswichTown,
         altIds: nil
     )
     
-    static let manCity = Team(
-        id: 4,
-        name: "Manchester City",
-        shortName: "Man City",
+    static let liverpool = Team(
+        id: 10,
+        name: "Liverpool",
+        shortName: "LIV",
         teamType: "FIRST",
-        club: .manCity,
-        altIds: nil
-    )
-    
-    static let chelsea = Team(
-        id: 5,
-        name: "Chelsea",
-        shortName: "Chelsea",
-        teamType: "FIRST",
-        club: .chelsea,
-        altIds: nil
-    )
-    
-    static let tottenham = Team(
-        id: 6,
-        name: "Tottenham Hotspur",
-        shortName: "Spurs",
-        teamType: "FIRST",
-        club: .tottenham,
+        club: .liverpool,
         altIds: nil
     )
     
     static let manUtd = Team(
-        id: 7,
+        id: 12,
         name: "Manchester United",
-        shortName: "Man Utd",
+        shortName: "MUN",
         teamType: "FIRST",
         club: .manUtd,
+        altIds: nil
+    )
+    
+    static let nottinghamForest = Team(
+        id: 15,
+        name: "Nottingham Forest",
+        shortName: "NFO",
+        teamType: "FIRST",
+        club: .nottinghamForest,
+        altIds: nil
+    )
+    
+    static let southampton = Team(
+        id: 20,
+        name: "Southampton",
+        shortName: "SOU",
+        teamType: "FIRST",
+        club: .southampton,
+        altIds: nil
+    )
+    
+    static let newcastle = Team(
+        id: 23,
+        name: "Newcastle United",
+        shortName: "NEW",
+        teamType: "FIRST",
+        club: .newcastle,
+        altIds: nil
+    )
+    
+    static let westHam = Team(
+        id: 25,
+        name: "West Ham United",
+        shortName: "WHU",
+        teamType: "FIRST",
+        club: .westHam,
+        altIds: nil
+    )
+    
+    static let bournemouth = Team(
+        id: 127,
+        name: "Bournemouth",
+        shortName: "BOU",
+        teamType: "FIRST",
+        club: .bournemouth,
+        altIds: nil
+    )
+    
+    static let brighton = Team(
+        id: 131,
+        name: "Brighton and Hove Albion",
+        shortName: "BHA",
+        teamType: "FIRST",
+        club: .brighton,
         altIds: nil
     )
 }

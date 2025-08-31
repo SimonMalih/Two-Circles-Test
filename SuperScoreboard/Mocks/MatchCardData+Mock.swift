@@ -1,7 +1,14 @@
+//
+//  MatchCardData+Mock.swift
+//  SuperScoreboard
+//
+//  Created by Simon Malih on 30/08/2025.
+//
+
 import Domain
 
 extension MatchCardData {
-    static let upcomingMatchCard = MatchCardData(
+    static let upcoming = MatchCardData(
         homeTeam: .liverpool,
         awayTeam: .arsenal,
         homeScore: "1",
@@ -12,14 +19,25 @@ extension MatchCardData {
         match: .upcoming
     )
     
-    static let liveMatchCard = MatchCardData(
-        homeTeam: .psg,
-        awayTeam: .manCity,
-        homeScore: "3",
-        awayScore: "4",
-        homeTeamAbbr: Team.psg.shortName,
-        awayTeamAbbr: Team.manCity.shortName,
+    static let live = MatchCardData(
+        homeTeam: .manUtd,
+        awayTeam: .newcastle,
+        homeScore: "2",
+        awayScore: "1",
+        homeTeamAbbr: Team.manUtd.shortName,
+        awayTeamAbbr: Team.newcastle.shortName,
         shouldShowScores: true,
         match: .live
+    )
+    
+    static let completed = MatchCardData(
+        homeTeam: .westHam,
+        awayTeam: .brighton,
+        homeScore: "1",
+        awayScore: "3",
+        homeTeamAbbr: Team.westHam.shortName,
+        awayTeamAbbr: Team.brighton.shortName,
+        shouldShowScores: true,
+        match: .completed
     )
 }
