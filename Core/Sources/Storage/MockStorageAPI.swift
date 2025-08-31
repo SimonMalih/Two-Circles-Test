@@ -1,12 +1,12 @@
 import Foundation
 
+public enum MockStorageError: Error {
+    case simulatedFailure
+}
+
 /// Simple mock StorageAPI implementation using a dictionary for testing.
 public final class MockStorageAPI: StorageAPI {
-    
-    public enum MockStorageError: Error {
-        case simulatedFailure
-    }
-    
+        
     private var storage: [String: Codable]
     private var shouldFail: Bool
     
@@ -33,8 +33,10 @@ public final class MockStorageAPI: StorageAPI {
         storage.removeValue(forKey: key)
     }
 }
+
+// MARK: - Test Helper Methods
+
 extension MockStorageAPI {
-    // MARK: - Test Helper Methods
     
     public func setError(_ shouldFail: Bool) {
         self.shouldFail = shouldFail
@@ -47,9 +49,7 @@ extension MockStorageAPI {
     public func reset() {
         storage.removeAll()
     }
-    
-    // MARK: - Private Methods
-    
+        
     private func maybeThrow() throws {
         if shouldFail {
             throw MockStorageError.simulatedFailure

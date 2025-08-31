@@ -5,7 +5,7 @@ import Core
 ///
 /// `FavoritesStorageMediator` provides three essential operations for managing favorites:
 /// - Save: Overwrites the entire favorites list
-/// - Fetch: Retrieves the current favorites list  
+/// - Fetch: Retrieves the current favorites list
 /// - Clear: Removes all favorites
 ///
 /// All business logic (toggle, add/remove, checking status) is handled by the ViewModel layer.
@@ -26,17 +26,6 @@ import Core
 /// ```
 public final class FavoritesStorageMediator: Sendable {
     
-    public enum FavoritesStorageError: Error, LocalizedError {
-        case storageOperationFailed(Error)
-        
-        public var errorDescription: String? {
-            switch self {
-            case .storageOperationFailed(let error):
-                return "Favorites storage operation failed: \(error.localizedDescription)"
-            }
-        }
-    }
-    
     private let storageAPI: StorageAPI
     private let favoritesKey = "favorite_club_ids"
     
@@ -52,11 +41,7 @@ public final class FavoritesStorageMediator: Sendable {
     /// - Parameter favoriteIds: Array of club IDs to save as favorites
     /// - Throws: `FavoritesStorageError` if the operation fails
     public func saveFavorites(_ favoriteIds: [Int]) throws {
-        do {
-            try storageAPI.save(favoriteIds, forKey: favoritesKey)
-        } catch {
-            throw FavoritesStorageError.storageOperationFailed(error)
-        }
+        try storageAPI.save(favoriteIds, forKey: favoritesKey)
     }
     
     /// Fetches the array of favorite club IDs from storage.
@@ -64,11 +49,7 @@ public final class FavoritesStorageMediator: Sendable {
     /// - Returns: Array of favorite club IDs, or empty array if no favorites exist
     /// - Throws: `FavoritesStorageError` if loading fails
     public func fetchFavorites() throws -> [Int] {
-        do {
-            return try storageAPI.load([Int].self, forKey: favoritesKey) ?? []
-        } catch {
-            throw FavoritesStorageError.storageOperationFailed(error)
-        }
+        try storageAPI.load([Int].self, forKey: favoritesKey) ?? []
     }
     
     /// Clears all favorites from storage.

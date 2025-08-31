@@ -61,7 +61,7 @@ struct FavoritesStorageMediatorTests {
         let storage = MockStorageAPI(shouldFail: true)
         let mediator = FavoritesStorageMediator(storageAPI: storage)
         
-        #expect(throws: FavoritesStorageMediator.FavoritesStorageError.self) {
+        #expect(throws: MockStorageError.self) {
             try mediator.saveFavorites([1, 2, 3])
         }
     }
@@ -71,7 +71,7 @@ struct FavoritesStorageMediatorTests {
         let storage = MockStorageAPI(shouldFail: true)
         let mediator = FavoritesStorageMediator(storageAPI: storage)
         
-        #expect(throws: FavoritesStorageMediator.FavoritesStorageError.self) {
+        #expect(throws: MockStorageError.self) {
             try mediator.fetchFavorites()
         }
     }
@@ -81,7 +81,7 @@ struct FavoritesStorageMediatorTests {
         let storage = MockStorageAPI(shouldFail: true)
         let mediator = FavoritesStorageMediator(storageAPI: storage)
         
-        #expect(throws: FavoritesStorageMediator.FavoritesStorageError.self) {
+        #expect(throws: MockStorageError.self) {
             try mediator.clearAllFavorites()
         }
     }
