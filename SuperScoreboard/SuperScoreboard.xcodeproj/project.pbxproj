@@ -75,11 +75,6 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
-		F4A3646F2E63C2F600415241 /* Mocks */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = Mocks;
-			sourceTree = "<group>";
-		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,7 +109,6 @@
 			children = (
 				F4A3648B2E644DCE00415241 /* SuperScoreboard-Info.plist */,
 				2ECFC3BF2E5F3CE10013C70F /* Sources */,
-				F4A3646F2E63C2F600415241 /* Mocks */,
 				F4A364362E638FB900415241 /* Resources */,
 				2ECFC3CD2E5F3CE20013C70F /* Tests */,
 				2ECFC3D72E5F3CE20013C70F /* UITests */,
@@ -161,7 +155,6 @@
 			fileSystemSynchronizedGroups = (
 				2ECFC3BF2E5F3CE10013C70F /* Sources */,
 				F4A364362E638FB900415241 /* Resources */,
-				F4A3646F2E63C2F600415241 /* Mocks */,
 			);
 			name = SuperScoreboard;
 			packageProductDependencies = (

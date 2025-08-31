@@ -15,9 +15,9 @@ extension View {
     /// - Returns: View with background
     func addFullscreenBackground(_ color: Color = .primaryBackground) -> some View {
         self
+            .ignoresSafeArea(edges: .all)
             .fillSpace()
             .background(color)
-            .ignoresSafeArea(edges: .all)
     }
     
     func addBackground(_ color: Color = .primaryBackground) -> some View {
