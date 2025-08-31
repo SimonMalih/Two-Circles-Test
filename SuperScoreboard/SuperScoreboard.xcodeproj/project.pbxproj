@@ -47,6 +47,7 @@
 		2ECFC3CA2E5F3CE20013C70F /* SuperScoreboardTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SuperScoreboardTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2ECFC3D42E5F3CE20013C70F /* SuperScoreboardUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SuperScoreboardUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2ECFC4882E5F4D180013C70F /* Domain.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Domain.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F4A3648B2E644DCE00415241 /* SuperScoreboard-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "SuperScoreboard-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -68,6 +69,11 @@
 		F4A364362E638FB900415241 /* Resources */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		F4A3646F2E63C2F600415241 /* Mocks */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = Mocks;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -101,7 +107,9 @@
 		2ECFC3B42E5F3CE10013C70F = {
 			isa = PBXGroup;
 			children = (
+				F4A3648B2E644DCE00415241 /* SuperScoreboard-Info.plist */,
 				2ECFC3BF2E5F3CE10013C70F /* Sources */,
+				F4A3646F2E63C2F600415241 /* Mocks */,
 				F4A364362E638FB900415241 /* Resources */,
 				2ECFC3CD2E5F3CE20013C70F /* Tests */,
 				2ECFC3D72E5F3CE20013C70F /* UITests */,
@@ -147,6 +155,7 @@
 			fileSystemSynchronizedGroups = (
 				2ECFC3BF2E5F3CE10013C70F /* Sources */,
 				F4A364362E638FB900415241 /* Resources */,
+				F4A3646F2E63C2F600415241 /* Mocks */,
 			);
 			name = SuperScoreboard;
 			packageProductDependencies = (
@@ -435,8 +444,10 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = B843M46GHC;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "SuperScoreboard-Info.plist";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -462,8 +473,10 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = B843M46GHC;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "SuperScoreboard-Info.plist";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
