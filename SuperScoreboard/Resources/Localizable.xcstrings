@@ -30,7 +30,18 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Failed to display matches"
+            "value" : "Unable to load matches"
+          }
+        }
+      }
+    },
+    "failed_to_load_matches_description" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Please check your connection and try again"
           }
         }
       }
