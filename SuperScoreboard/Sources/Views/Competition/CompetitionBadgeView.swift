@@ -48,4 +48,5 @@ struct CompetitionBadgeView: View {
         CompetitionBadgeView(competitionId: 888, title: "La Liga")
     }
     .padding()
+    .addFullscreenBackground()
 }

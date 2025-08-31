@@ -57,4 +57,5 @@ struct TeamBadgeView: View {
         TeamBadgeView(teamId: 999, abbreviation: "TST")
     }
     .padding()
+    .addFullscreenBackground()
 }

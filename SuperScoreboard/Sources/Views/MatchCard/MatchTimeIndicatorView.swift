@@ -42,5 +42,5 @@ private extension View {
         MatchTimeIndicatorView(match: .live)
         MatchTimeIndicatorView(match: .completed)
     }
-    .padding()
+    .addFullscreenBackground()
 }

@@ -30,5 +30,5 @@ struct CompetitionHeaderView: View {
         CompetitionHeaderView(competitionId: 1, title: "Premier League")
         CompetitionHeaderView(competitionId: 3, title: "La Liga")
     }
-    .padding()
+    .addFullscreenBackground()
 }
