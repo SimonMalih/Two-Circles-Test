@@ -26,7 +26,7 @@ public struct MockMatchData {
                             id: 1,
                             name: "Arsenal",
                             abbr: "ARS",
-                            shortName: nil
+                            shortName: "Arsenal"
                         ),
                         altIds: nil
                     ),
@@ -34,15 +34,15 @@ public struct MockMatchData {
                 ),
                 MatchTeam(
                     team: Team(
-                        id: 2,
+                        id: 10,
                         name: "Liverpool",
                         shortName: "Liverpool",
                         teamType: "FIRST",
                         club: Club(
-                            id: 2,
+                            id: 10,
                             name: "Liverpool",
                             abbr: "LIV",
-                            shortName: nil
+                            shortName: "Liverpool"
                         ),
                         altIds: nil
                     ),
@@ -75,12 +75,12 @@ public struct MockMatchData {
             teams: [
                 MatchTeam(
                     team: Team(
-                        id: 3,
+                        id: 12,
                         name: "Manchester United",
                         shortName: "Man Utd",
                         teamType: "FIRST",
                         club: Club(
-                            id: 3,
+                            id: 12,
                             name: "Manchester United",
                             abbr: "MUN",
                             shortName: "Man Utd"
@@ -91,15 +91,15 @@ public struct MockMatchData {
                 ),
                 MatchTeam(
                     team: Team(
-                        id: 4,
-                        name: "Chelsea",
-                        shortName: "Chelsea",
+                        id: 131,
+                        name: "Brighton and Hove Albion",
+                        shortName: "Brighton",
                         teamType: "FIRST",
                         club: Club(
-                            id: 4,
-                            name: "Chelsea",
-                            abbr: "CHE",
-                            shortName: nil
+                            id: 131,
+                            name: "Brighton and Hove Albion",
+                            abbr: "BHA",
+                            shortName: "Brighton"
                         ),
                         altIds: nil
                     ),
@@ -136,15 +136,15 @@ public struct MockMatchData {
             teams: [
                 MatchTeam(
                     team: Team(
-                        id: 5,
-                        name: "Manchester City",
-                        shortName: "Man City",
+                        id: 23,
+                        name: "Newcastle United",
+                        shortName: "Newcastle",
                         teamType: "FIRST",
                         club: Club(
-                            id: 5,
-                            name: "Manchester City",
-                            abbr: "MCI",
-                            shortName: "Man City"
+                            id: 23,
+                            name: "Newcastle United",
+                            abbr: "NEW",
+                            shortName: "Newcastle"
                         ),
                         altIds: nil
                     ),
@@ -152,15 +152,15 @@ public struct MockMatchData {
                 ),
                 MatchTeam(
                     team: Team(
-                        id: 6,
-                        name: "Real Madrid",
-                        shortName: "Real Madrid",
+                        id: 127,
+                        name: "Bournemouth",
+                        shortName: "Bournemouth",
                         teamType: "FIRST",
                         club: Club(
-                            id: 6,
-                            name: "Real Madrid",
-                            abbr: "RMA",
-                            shortName: "Real Madrid"
+                            id: 127,
+                            name: "Bournemouth",
+                            abbr: "BOU",
+                            shortName: "Bournemouth"
                         ),
                         altIds: nil
                     ),
@@ -169,8 +169,8 @@ public struct MockMatchData {
             ],
             ground: Ground(
                 id: 3,
-                name: "Etihad Stadium",
-                city: "Manchester",
+                name: "St. James' Park",
+                city: "Newcastle",
                 source: "OPTA"
             ),
             status: .upcoming,
