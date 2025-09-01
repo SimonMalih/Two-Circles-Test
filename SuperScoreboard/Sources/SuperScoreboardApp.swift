@@ -4,6 +4,10 @@ import Core
 
 @main
 struct SuperScoreboardApp: App {
+    
+    init() {
+        configureNavigationBarAppearance()
+    }
 
     var body: some Scene {
         WindowGroup {
@@ -15,5 +19,15 @@ struct SuperScoreboardApp: App {
                 )
             )
         }
+    }
+    
+    private func configureNavigationBarAppearance() {
+        let appearance = UINavigationBarAppearance()
+        appearance.configureWithDefaultBackground()
+        appearance.backgroundColor = UIColor(Color.surfaceBase)
+        
+        UINavigationBar.appearance().standardAppearance = appearance
+        UINavigationBar.appearance().scrollEdgeAppearance = appearance
+        UINavigationBar.appearance().compactAppearance = appearance
     }
 }
