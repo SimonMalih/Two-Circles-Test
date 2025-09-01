@@ -10,8 +10,10 @@ import SwiftUI
 // Assets from https://github.com/luukhopman/football-logos/tree/master/history/2023-24
 
 struct TeamBadgeView: View {
+    
     let teamId: Int
     let abbreviation: String
+    let isFavorite: Bool
     
     private let clubLogos: [Int: String] = [
         1: "Arsenal",
@@ -27,14 +29,21 @@ struct TeamBadgeView: View {
     ]
     
     var body: some View {
-        Group {
-            if let logoName = clubLogos[teamId] {
-                Image(logoName)
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-                    .frame(height: 40)
-            } else {
-                fallbackBadge
+        ZStack(alignment: .bottomTrailing) {
+            Group {
+                if let logoName = clubLogos[teamId] {
+                    Image(logoName)
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(height: 40)
+                } else {
+                    fallbackBadge
+                }
+            }
+            .padding(.trailing, 5)
+            
+            if isFavorite {
+                followBadge
             }
         }
     }
@@ -48,13 +57,21 @@ struct TeamBadgeView: View {
                     .customFont(.clubBadgeFallback)
             }
     }
+    
+    
+    private var followBadge: some View {
+        Image("FollowBadge")
+            .resizable()
+            .aspectRatio(contentMode: .fit)
+            .frame(width: 16, height: 16)
+    }
 }
 
 #Preview {
     HStack(spacing: 20) {
-        TeamBadgeView(teamId: 1, abbreviation: "ARS")
-        TeamBadgeView(teamId: 12, abbreviation: "MUN")
-        TeamBadgeView(teamId: 999, abbreviation: "TST")
+        TeamBadgeView(teamId: 1, abbreviation: "ARS", isFavorite: true)
+        TeamBadgeView(teamId: 10, abbreviation: "LIV", isFavorite: true)
+        TeamBadgeView(teamId: 12, abbreviation: "MUN", isFavorite: false)
     }
     .padding()
     .addFullscreenBackground()
