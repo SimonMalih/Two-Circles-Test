@@ -26,11 +26,11 @@ public extension MockMatchService {
     static func service(for state: MockState) -> MockMatchService {
         switch state {
         case .loaded:
-            return .loaded
+            .loaded
         case .empty:
-            return .empty
+            .empty
         case .error:
-            return .error
+            .error
         }
     }
 }

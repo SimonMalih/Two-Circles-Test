@@ -43,7 +43,7 @@ struct FontTestView: View {
             }
             .padding()
         }
-        .navigationTitle("Font Test")
+        .navBarTitle("font_test_title")
         .addFullscreenBackground()
     }
 }

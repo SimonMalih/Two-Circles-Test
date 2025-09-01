@@ -1,5 +1,5 @@
 //
-//  View+Background.swift
+//  View+EXT.swift
 //  SuperScoreboard
 //
 //  Created by Simon Malih on 31/08/2025.
@@ -36,5 +36,14 @@ extension View {
             }
             Spacer()
         }
+    }
+    
+    /// Adds localised navigation bar title
+    func navBarTitle(
+        _ key: LocalizedStringKey,
+        displayMode: NavigationBarItem.TitleDisplayMode = .inline
+    ) -> some View {
+        self
+            .navigationBarTitle(key, displayMode: displayMode)
     }
 }

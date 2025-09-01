@@ -15,7 +15,7 @@ extension Match {
         teams: [.liverpool, .arsenal],
         ground: .emirates,
         status: .upcoming,
-        attendance: nil,
+        attendance: 60704,
         clock: nil,
         goals: nil
     )
@@ -27,9 +27,9 @@ extension Match {
         teams: [.manUtd, .newcastle],
         ground: .oldTrafford,
         status: .inProgress,
-        attendance: nil,
+        attendance: 74310,
         clock: .firstHalf,
-        goals: nil
+        goals: [.earlyGoal, .lateFirstHalfGoal]
     )
     
     static let completed = Match(
@@ -41,7 +41,7 @@ extension Match {
         status: .completed,
         attendance: 40000,
         clock: .fullTime,
-        goals: nil
+        goals: [.regularGoal, .penaltyGoal, .assistedGoal]
     )
     
     static let premierLeagueMatches = [upcoming, live, completed]
