@@ -8,27 +8,9 @@
 import SwiftUI
 import Domain
 
-/// SwiftUI view for displaying and selecting favorite clubs in a 2-column grid layout.
-///
-/// `FavoritesView` presents all available clubs in a responsive grid where users can
-/// multi-select their favorite clubs. Selected clubs are highlighted with blue accent
-/// color, and a save button allows persisting the selections.
-///
-/// # Features
-/// - 2-column grid layout with rounded square club cards
-/// - Multi-selection with visual feedback (blue highlight)
-/// - Save button with loading state
-/// - Error handling with user feedback
-/// - Displays club name and abbreviation
-///
-/// # Usage
-/// ```swift
-/// NavigationLink("Select Favorites") {
-///     FavoritesView(viewModel: favoritesViewModel)
-/// }
-/// ```
+/// Displaying and selecting favorite clubs in a 2-column grid layout.
 struct FavoritesView: View {
-    @State private var viewModel: FavoritesViewModel
+    @State var viewModel: FavoritesViewModel
     @Environment(\.dismiss) private var dismiss
     
     /// The columns configuration for the LazyVGrid
@@ -36,10 +18,6 @@ struct FavoritesView: View {
         GridItem(.flexible()),
         GridItem(.flexible())
     ]
-    
-    init(viewModel: FavoritesViewModel) {
-        self.viewModel = viewModel
-    }
     
     var body: some View {
         VStack(spacing: 0) {
@@ -51,14 +29,16 @@ struct FavoritesView: View {
                     emptyStateView
                 }
             } else {
-                // Show clubs grid, even during refresh loading
                 clubGridView
             }
-            
         }
         .addBackground()
-        .navigationTitle("Select Favorites")
-        .navigationBarTitleDisplayMode(.inline)
+        .navBarTitle("select_favorites_title")
+        .onDisappear {
+            if viewModel.hasUnsavedChanges {
+                viewModel.resetSelections()
+            }
+        }
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {
                 Button("save") {
@@ -72,22 +52,20 @@ struct FavoritesView: View {
                 .disabled(viewModel.isLoading || !viewModel.hasUnsavedChanges)
             }
             
-            // Show refresh loading indicator or selection count
             ToolbarItem(placement: .navigationBarLeading) {
                 if viewModel.isLoading && !viewModel.availableClubs.isEmpty {
-                    // Show subtle loading indicator during refresh
                     ProgressView()
                         .scaleEffect(0.7)
                         .progressViewStyle(CircularProgressViewStyle(tint: .secondary))
                 } else if viewModel.selectedCount > 0 {
-                    Text("\(viewModel.selectedCount) selected")
+                    Text("clubs_selected".localizedKey(with: viewModel.selectedCount))
                         .font(.caption)
                         .foregroundColor(.secondary)
                 }
             }
         }
-        .alert("Error", isPresented: .constant(viewModel.errorMessage != nil)) {
-            Button("OK") {
+        .alert("error_title", isPresented: .constant(viewModel.errorMessage != nil)) {
+            Button("ok_button") {
                 viewModel.errorMessage = nil
             }
         } message: {
@@ -165,7 +143,7 @@ struct FavoritesView: View {
                             .progressViewStyle(CircularProgressViewStyle(tint: .white))
                     }
                     
-                    Text(viewModel.isLoading ? "Saving..." : "Save Favorites")
+                    Text(viewModel.isLoading ? "saving_progress".localized : "save_favorites_button".localized)
                         .font(.headline)
                         .foregroundColor(.white)
                 }
@@ -184,55 +162,6 @@ struct FavoritesView: View {
         .background(.surfaceBase)
     }
 }
-
-// MARK: - Club Card Component
-
-/// Individual club card component for the favorites grid.
-private struct ClubCardView: View {
-    let club: Club
-    let isSelected: Bool
-    let onTap: () -> Void
-    
-    var body: some View {
-        Button(action: onTap) {
-            VStack(spacing: 8) {
-                // Club badge using TeamBadgeView
-                TeamBadgeView(teamId: club.id, abbreviation: club.abbr)
-                    .frame(height: 40)
-                
-                // Club name
-                Text(club.name)
-                    .font(.caption.weight(.medium))
-                    .foregroundColor(isSelected ? .white : .primary)
-                    .multilineTextAlignment(.center)
-                    .lineLimit(2)
-                
-                // Club abbreviation
-                Text(club.abbr)
-                    .font(.caption2)
-                    .foregroundColor(isSelected ? .white.opacity(0.8) : .secondary)
-            }
-            .frame(maxWidth: .infinity)
-            .frame(height: 120)
-            .background(
-                RoundedRectangle(cornerRadius: 12)
-                    .fill(isSelected ? Color.accentColor : .surfaceBase)
-                    .overlay(
-                        RoundedRectangle(cornerRadius: 12)
-                            .stroke(
-                                isSelected ? Color.accentColor : Color(.systemGray4),
-                                lineWidth: isSelected ? 2 : 1
-                            )
-                    )
-            )
-        }
-        .buttonStyle(PlainButtonStyle())
-        .scaleEffect(isSelected ? 1.02 : 1.0)
-        .animation(.easeInOut(duration: 0.2), value: isSelected)
-    }
-}
-
-// MARK: - Previews
 
 #Preview("Favorites View - Populated") {
     FavoritesView(viewModel: .preview)

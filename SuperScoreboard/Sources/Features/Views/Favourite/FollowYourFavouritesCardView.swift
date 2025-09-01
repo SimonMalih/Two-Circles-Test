@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct FollowYourFavouritesCardView: View {
+    
     let onStartFollowing: () -> Void
     
     var body: some View {
@@ -75,4 +76,3 @@ struct FollowYourFavouritesCardView: View {
     FollowYourFavouritesCardView { }
         .addFullscreenBackground()
 }
-
