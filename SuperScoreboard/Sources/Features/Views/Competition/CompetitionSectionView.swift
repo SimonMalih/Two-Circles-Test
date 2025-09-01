@@ -10,12 +10,17 @@ import Domain
 
 struct CompetitionSectionView: View {
     let sectionData: CompetitionSectionData
+    let favoritesRepository: FavouritesRepositoryProtocol?
     
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
-            CompetitionHeaderView(competitionId: sectionData.competition?.id ?? 0, title: sectionData.title)
+            CompetitionHeaderView(
+                competitionId: sectionData.competition?.id ?? 0,
+                title: sectionData.title
+            )
+            
             ForEach(sectionData.matches, id: \.match.id) { matchData in
-                MatchCardView(matchData: matchData)
+                NavigableMatchCardView(matchData: matchData, favoritesRepository: favoritesRepository)
             }
         }
         .padding(.vertical, 16)
@@ -28,7 +33,8 @@ struct CompetitionSectionView: View {
             competition: Competition(id: 1, title: "Premier League"),
             title: "Premier League",
             matches: MatchCardData.premierLeagueMatches
-        )
+        ),
+        favoritesRepository: nil
     )
     .addFullscreenBackground()
 }

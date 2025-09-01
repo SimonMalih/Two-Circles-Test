@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct CompetitionBadgeView: View {
+    
     let competitionId: Int
     let title: String
     
@@ -17,15 +18,13 @@ struct CompetitionBadgeView: View {
     ]
     
     var body: some View {
-        Group {
-            if let logoName = competitionLogos[competitionId] {
-                Image(logoName)
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-                    .frame(width: 24, height: 24)
-            } else {
-                fallbackBadge
-            }
+        if let logoName = competitionLogos[competitionId] {
+            Image(logoName)
+                .resizable()
+                .aspectRatio(contentMode: .fit)
+                .frame(width: 24, height: 24)
+        } else {
+            fallbackBadge
         }
     }
     

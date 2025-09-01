@@ -13,6 +13,7 @@ import Core
 struct CompetitionsListView: View {
     let viewModel: CompetitionsListViewModel
     @State private var showingFavorites = false
+    @State private var selectedCompetitionSection: CompetitionSectionData?
     @State private var isFirstLoad = true
     
     var body: some View {
@@ -23,7 +24,11 @@ struct CompetitionsListView: View {
                 } else {
                     switch viewModel.viewState {
                     case .loading, .loaded:
-                        competionsList
+                        if viewModel.sectionsData.isEmpty {
+                            loadingSpinner
+                        } else {
+                            competionsList
+                        }
                     case .empty:
                         emptyState
                     case .error:
@@ -32,15 +37,33 @@ struct CompetitionsListView: View {
                 }
             }
             .padding(.horizontal, 16)
+            .padding(.top, 8)
             .addBackground()
-            .navigationTitle("")
-            .toolbarBackground(.surfaceBase, for: .navigationBar)
-            .toolbarBackgroundVisibility(.visible, for: .navigationBar)
+            .navBarTitle("")
+            .toolbar {
+                // Force the navigation bar to appear
+                ToolbarItem(placement: .navigationBarLeading) {
+                    Color.clear.frame(width: 1, height: 1)
+                }
+            }
             .navigationDestination(isPresented: $showingFavorites) {
                 FavoritesView(
                     viewModel: FavoritesViewModel(
                         storageMediator: viewModel.storageMediator,
                         matches: viewModel.matches
+                    )
+                )
+                .onDisappear {
+                    viewModel.favoritesRepository.refresh()
+                }
+            }
+            .navigationDestination(item: $selectedCompetitionSection) { sectionData in
+                CompetitionMatchesView(
+                    viewModel: CompetitionMatchesViewModel(
+                        competition: sectionData.competition,
+                        competitionTitle: sectionData.title,
+                        matches: sectionData.matches,
+                        favoritesRepository: viewModel.favoritesRepository
                     )
                 )
             }
@@ -53,9 +76,10 @@ struct CompetitionsListView: View {
         }
     }
     
-    private var competionsList: some View {
+    private var competionsList: some View{
         ScrollView(showsIndicators: false) {
-            LazyVStack(spacing: 0) {
+            VStack(spacing: 0) {
+                
                 // Show top loading indicator during refresh (not first load)
                 if case .loading = viewModel.viewState {
                     ProgressView()
@@ -64,25 +88,46 @@ struct CompetitionsListView: View {
                 }
                 
                 if !viewModel.sectionsData.isEmpty {
-                // Show content if available
-                ForEach(viewModel.sectionsData, id: \.title) { section in
-                    CompetitionSectionView(sectionData: section)
-                }
-                
-                // Start Following card at the bottom (only when data exists)
+                    LazyVStack(spacing: 16) {
+                        // Show content if available
+                        ForEach(viewModel.sectionsData, id: \.title) { section in
+                            VStack(alignment: .leading, spacing: 8) {
+                                // Tappable competition header
+                                Button {
+                                    selectedCompetitionSection = section
+                                } label: {
+                                    CompetitionHeaderView(
+                                        competitionId: section.competition?.id ?? 0,
+                                        title: section.title
+                                    )
+                                }
+                                // Matches list (non-tappable container)
+                                ForEach(section.matches, id: \.match.id) { matchData in
+                                    NavigableMatchCardView(matchData: matchData, favoritesRepository: viewModel.favoritesRepository)
+                                }
+                            }
+                        }
+                    }
+                    
                     FollowYourFavouritesCardView {
                         showingFavorites = true
                     }
+                    .padding(.top, 32)
+                }
+            }
+            .refreshable {
+                if case .loaded = viewModel.viewState {
+                    await viewModel.fetchMatches()
                 }
             }
         }
-        .refreshable {
-            if case .loaded = viewModel.viewState {
-                await viewModel.fetchMatches()
-            }
-        }
     }
-    
+}
+
+// MARK: - View States
+
+extension CompetitionsListView {
+
     // TODO: update colour of spinner
     private var loadingSpinner: some View {
         LoadingSpinnerView()
@@ -94,11 +139,11 @@ struct CompetitionsListView: View {
             Text("no_matches_today")
                 .font(.title2)
                 .fontWeight(.semibold)
-                .foregroundColor(.primary)
+                .foregroundStyle(.primary)
             
             Text("check_back_later")
                 .font(.body)
-                .foregroundColor(.secondary)
+                .foregroundStyle(.secondary)
                 .multilineTextAlignment(.center)
             
             Button("refresh") {
@@ -108,6 +153,7 @@ struct CompetitionsListView: View {
             }
             .buttonStyle(.borderedProminent)
         }
+        .fillSpace()
     }
     
     private var errorState: some View {
@@ -115,21 +161,22 @@ struct CompetitionsListView: View {
             Text("failed_to_display_matches")
                 .font(.title2)
                 .fontWeight(.semibold)
-                .foregroundColor(.primary)
+                .foregroundStyle(.primary)
             
             Text("failed_to_load_matches_description")
                 .font(.body)
-                .foregroundColor(.secondary)
+                .foregroundStyle(.secondary)
                 .multilineTextAlignment(.center)
                 .padding(.horizontal, 32)
             
-            Button("Try Again") {
+            Button("try_again") {
                 Task {
                     await viewModel.fetchMatches()
                 }
             }
             .buttonStyle(.borderedProminent)
         }
+        .fillSpace()
     }
 }
 

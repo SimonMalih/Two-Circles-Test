@@ -16,16 +16,19 @@ final class CompetitionsListViewModel {
     var viewState: ViewState = .loading
     var sectionsData: [CompetitionSectionData] = []
     
-    private let matchService: MatchService
     let storageMediator: FavoritesStorageMediator
-    
+    let favoritesRepository: FavouritesRepositoryProtocol
+    private let matchService: MatchService
+
     init(matchService: MatchService, storageMediator: FavoritesStorageMediator) {
         self.matchService = matchService
         self.storageMediator = storageMediator
+        self.favoritesRepository = FavouritesRepository(storageMediator: storageMediator)
     }
     
     @MainActor
     func fetchMatches() async {
+        guard viewState != .loaded else { return }
         viewState = .loading
         
         do {
