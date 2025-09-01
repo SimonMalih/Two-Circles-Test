@@ -4,8 +4,33 @@
     "" : {
 
     },
-    "%lld selected" : {
+    "-" : {
 
+    },
+    "%lld" : {
+
+    },
+    "assist_player_label" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Assist: Player #%@"
+          }
+        }
+      }
+    },
+    "attendance_label" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Attendance: %@"
+          }
+        }
+      }
     },
     "check_back_later" : {
       "extractionState" : "manual",
@@ -18,8 +43,38 @@
         }
       }
     },
-    "Error" : {
-
+    "clubs_selected" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ selected"
+          }
+        }
+      }
+    },
+    "competition_label" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Competition:"
+          }
+        }
+      }
+    },
+    "error_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Error"
+          }
+        }
+      }
     },
     "failed_to_display_matches" : {
       "extractionState" : "manual",
@@ -39,6 +94,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Please check your connection and try again"
+          }
+        }
+      }
+    },
+    "first_half" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "First Half"
           }
         }
       }
@@ -87,9 +153,6 @@
         }
       }
     },
-    "Font Test" : {
-
-    },
     "font_system_test" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -97,6 +160,28 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Font System Test"
+          }
+        }
+      }
+    },
+    "font_test_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Font Test"
+          }
+        }
+      }
+    },
+    "goal_timeline_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Goal Timeline"
           }
         }
       }
@@ -134,6 +219,127 @@
         }
       }
     },
+    "match_details_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Match Details"
+          }
+        }
+      }
+    },
+    "match_id_label" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Match ID:"
+          }
+        }
+      }
+    },
+    "match_information_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Match Information"
+          }
+        }
+      }
+    },
+    "match_status_completed_description" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Completed Match"
+          }
+        }
+      }
+    },
+    "match_status_full_time" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Full Time"
+          }
+        }
+      }
+    },
+    "match_status_live" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Live"
+          }
+        }
+      }
+    },
+    "match_status_live_description" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Live Match"
+          }
+        }
+      }
+    },
+    "match_status_unknown" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unknown Status"
+          }
+        }
+      }
+    },
+    "match_status_unknown_description" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unknown Match Status"
+          }
+        }
+      }
+    },
+    "match_status_upcoming" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Upcoming"
+          }
+        }
+      }
+    },
+    "match_status_upcoming_description" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Upcoming Match"
+          }
+        }
+      }
+    },
     "no_clubs_available" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -156,8 +362,38 @@
         }
       }
     },
-    "OK" : {
-
+    "ok_button" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "OK"
+          }
+        }
+      }
+    },
+    "penalty_label" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "(Penalty)"
+          }
+        }
+      }
+    },
+    "player_label" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Player #%@"
+          }
+        }
+      }
     },
     "refresh" : {
       "extractionState" : "manual",
@@ -181,14 +417,49 @@
         }
       }
     },
-    "Save Favorites" : {
-
+    "save_favorites_button" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Save Favorites"
+          }
+        }
+      }
     },
-    "Saving..." : {
-
+    "saving_progress" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Saving..."
+          }
+        }
+      }
     },
-    "Select Favorites" : {
-
+    "second_half" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Second Half"
+          }
+        }
+      }
+    },
+    "select_favorites_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Select Favorites"
+          }
+        }
+      }
     },
     "start_following" : {
       "extractionState" : "manual",
@@ -201,8 +472,27 @@
         }
       }
     },
-    "Try Again" : {
-
+    "status_label" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Status:"
+          }
+        }
+      }
+    },
+    "try_again" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Try Again"
+          }
+        }
+      }
     },
     "two_circles_awesome" : {
       "extractionState" : "manual",
@@ -211,6 +501,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Two Circles is an awesome company!"
+          }
+        }
+      }
+    },
+    "unknown_phase" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unknown Phase"
           }
         }
       }
