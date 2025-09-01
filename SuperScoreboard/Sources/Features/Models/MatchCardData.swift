@@ -8,6 +8,7 @@
 import Domain
 
 public struct MatchCardData {
+    
     let homeTeam: MatchTeam
     let awayTeam: MatchTeam
     let homeScore: String
@@ -29,5 +30,16 @@ public struct MatchCardData {
     
     var awayTeamId: Int {
         awayTeam.team.id
+    }
+}
+
+extension MatchCardData: Hashable {
+    
+    public func hash(into hasher: inout Hasher) {
+        hasher.combine(match.id)
+    }
+    
+    public static func == (lhs: MatchCardData, rhs: MatchCardData) -> Bool {
+        lhs.match.id == rhs.match.id
     }
 }

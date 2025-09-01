@@ -29,7 +29,7 @@ struct MatchTimeIndicatorView: View {
 private extension View {
     func styleScoreTime(_ isLive: Bool) -> some View {
         self
-            .customFontStyle(.caption1Regular, color: isLive ? .textIconDefaultWhite : .textIconDefaultBlack)
+            .customFont(.caption1Regular, color: isLive ? .textIconDefaultWhite : .textIconDefaultBlack)
             .frame(width: 48, height: 24)
             .background(isLive ? .red75 : .fillPrimary)
             .clipShape(RoundedRectangle(cornerRadius: .cornerRadius))

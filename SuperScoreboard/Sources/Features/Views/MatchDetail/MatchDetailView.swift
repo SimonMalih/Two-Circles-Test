@@ -9,9 +9,11 @@ import SwiftUI
 import Domain
 
 struct MatchDetailView: View {
+    
     let match: Match
     let favoritesRepository: FavouritesRepositoryProtocol?
     private let badgeWidth: CGFloat = 80
+    private let teamViewPadding: CGFloat = 4
     
     var body: some View {
         ScrollView {
@@ -34,10 +36,12 @@ struct MatchDetailView: View {
         VStack(spacing: 16) {
             HStack(alignment: .center, spacing: 8) {
                 teamView(for: homeTeam, isFavorite: isHomeTeamFavorite)
+                    .padding(.leading, teamViewPadding)
                 Spacer()
                 scoreSection
                 Spacer()
                 teamView(for: awayTeam, isFavorite: isAwayTeamFavorite)
+                    .padding(.trailing, teamViewPadding)
             }
         }
         .padding(.vertical)
@@ -49,21 +53,13 @@ struct MatchDetailView: View {
         VStack(spacing: 4) {
             HStack(spacing: 12) {
                 Text(homeScore)
-                    .customFont(.headingsExtraLarge)
-                    .foregroundColor(.primary)
-                
                 Text("-")
-                    .customFont(.headingsExtraLarge)
-                    .foregroundColor(.secondary)
-                
                 Text(awayScore)
-                    .customFont(.headingsExtraLarge)
-                    .foregroundColor(.primary)
             }
+            .customFont(.headingsExtraLarge)
             
             Text(matchStatusText)
-                .customFont(.bodySmall)
-                .foregroundColor(.secondary)
+                .customFont(.bodySmall, color: .red75)
         }
     }
     
@@ -96,9 +92,7 @@ struct MatchDetailView: View {
             
             VStack(alignment: .leading, spacing: 2) {
                 Text(match.ground.name)
-                    .customFont(.headingTitle3)
-                    .foregroundColor(.primary)
-                
+                    .customFont(.headingTitle3)                
                 Text(match.ground.city)
                     .customFont(.bodyMedium, color: .gray)
             }
@@ -181,7 +175,7 @@ private extension MatchDetailView {
         .frame(width: badgeWidth)
     }
     
-    func metadataRow(label: LocalizedStringKey, value: String) -> some View {
+    func metadataRow(label: LocalizedStringKey, value: LocalizedStringKey) -> some View {
         HStack {
             Text(label)
                 .customFont(.bodyMedium)
@@ -251,28 +245,31 @@ private extension MatchDetailView {
         favoritesRepository?.isFavorite(clubId: awayTeam.team.id) ?? false
     }
     
-    var matchStatusText: String {
+    var matchStatusText: LocalizedStringKey {
         switch match.status {
         case .upcoming:
-            "match_status_upcoming".localized
+            "match_status_upcoming"
         case .inProgress:
-            match.clock?.label ?? "match_status_live".localized
+            LocalizedStringKey(match.clock?.label ?? "match_status_live")
         case .completed:
-            "match_status_full_time".localized
+            "match_status_full_time"
+        @unknown default:
+            "match_status_unknown"
         }
     }
     
-    var matchStatusDescription: String {
+    var matchStatusDescription: LocalizedStringKey {
         switch match.status {
         case .upcoming:
-            "match_status_upcoming_description".localized
+            "match_status_upcoming_description"
         case .inProgress:
-            "match_status_live_description".localized
+            "match_status_live_description"
         case .completed:
-            "match_status_completed_description".localized
+            "match_status_completed_description"
+        @unknown default:
+            "match_status_unknown_description"
         }
     }
-    
 }
 
 #Preview("Upcoming Match") {
