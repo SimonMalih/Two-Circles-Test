@@ -1,5 +1,5 @@
 //
-//  MockMatchService+Preview.swift
+//  MockMatchService+Mock.swift
 //  SuperScoreboard
 //
 //  Created by Simon Malih on 31/08/2025.
