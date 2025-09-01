@@ -37,7 +37,6 @@ struct CompetitionsListView: View {
                 }
             }
             .padding(.horizontal, 16)
-            .padding(.top, 8)
             .addBackground()
             .navBarTitle("")
             .toolbar {
@@ -115,10 +114,11 @@ struct CompetitionsListView: View {
                     .padding(.top, 32)
                 }
             }
-            .refreshable {
-                if case .loaded = viewModel.viewState {
-                    await viewModel.fetchMatches()
-                }
+            .padding(.top, 8)
+        }
+        .refreshable {
+            if case .loaded = viewModel.viewState {
+                await viewModel.fetchMatches()
             }
         }
     }

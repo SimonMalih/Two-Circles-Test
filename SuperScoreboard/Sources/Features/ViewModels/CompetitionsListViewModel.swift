@@ -28,7 +28,6 @@ final class CompetitionsListViewModel {
     
     @MainActor
     func fetchMatches() async {
-        guard viewState != .loaded else { return }
         viewState = .loading
         
         do {
