@@ -1,6 +1,6 @@
 /// Represents the current match time in both precise and display-friendly formats.
 /// Used for showing live match progress and timing information to users.
-public struct Clock: Decodable, Sendable {
+public struct Clock: Decodable, Equatable, Sendable {
     /// Match time in seconds elapsed since kickoff for precise calculations
     public let secs: Int
     

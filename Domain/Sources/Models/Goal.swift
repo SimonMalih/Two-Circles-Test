@@ -1,6 +1,6 @@
 /// Represents a goal event that occurred during a football match.
 /// Contains comprehensive information about who scored, when, and how the goal was scored.
-public struct Goal: Decodable, Sendable {
+public struct Goal: Decodable, Equatable, Sendable {
     /// Unique identifier for the player who scored the goal
     public let personId: Int
     
