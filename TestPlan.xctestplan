@@ -1,0 +1,45 @@
+{
+  "configurations" : [
+    {
+      "id" : "98A8B16E-B726-4FE6-B72E-7E71724E12C8",
+      "name" : "Configuration 1",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "testTimeoutsEnabled" : true
+  },
+  "testTargets" : [
+    {
+      "target" : {
+        "containerPath" : "container:..\/Core\/Core.xcodeproj",
+        "identifier" : "2ECFC4332E5F46120013C70F",
+        "name" : "CoreTests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:..\/Domain\/Domain.xcodeproj",
+        "identifier" : "2ECFC46F2E5F4CAA0013C70F",
+        "name" : "DomainTests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:SuperScoreboard.xcodeproj",
+        "identifier" : "2ECFC3C92E5F3CE20013C70F",
+        "name" : "SuperScoreboardTests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:SuperScoreboard.xcodeproj",
+        "identifier" : "2ECFC3D32E5F3CE20013C70F",
+        "name" : "SuperScoreboardUITests"
+      }
+    }
+  ],
+  "version" : 1
+}
