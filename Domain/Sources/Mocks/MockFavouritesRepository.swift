@@ -60,3 +60,25 @@ public final class MockFavouritesRepository: FavouritesRepositoryProtocol {
         // Mock implementation - no-op for testing
     }
 }
+
+// MARK: - Mock Factory Methods
+
+extension MockFavouritesRepository {
+    
+    /// Mock repository with some pre-selected favorites
+    public static var preview: MockFavouritesRepository {
+        MockFavouritesRepository(favoriteClubIds: [1, 10, 12]) // Arsenal, Liverpool, Man Utd
+    }
+    
+    /// Mock repository with no favorites
+    public static var empty: MockFavouritesRepository {
+        MockFavouritesRepository()
+    }
+    
+    /// Mock repository simulating failure states (for preview purposes)
+    public static var failing: MockFavouritesRepository {
+        let mock = MockFavouritesRepository()
+        mock.shouldFail = true
+        return mock
+    }
+}

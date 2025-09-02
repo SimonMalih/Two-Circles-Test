@@ -204,35 +204,17 @@ import Core
         #expect(section?.matches.count == 1)
     }
     
-    @Test("init creates viewModel with injected dependencies")
-    func init_createsViewModelWithInjectedDependencies() async throws {
-        // Given
-        let mockService = MockMatchService()
-        let mockStorage = FavoritesStorageMediator.mock()
-        
-        // When
-        let sut = CompetitionsListViewModel(
-            matchService: mockService,
-            storageMediator: mockStorage
-        )
-        
-        // Then
-        #expect(sut.viewState == .loading)
-        #expect(sut.matches.isEmpty)
-        #expect(sut.sectionsData.isEmpty)
-        #expect(sut.storageMediator === mockStorage)
-    }
     
     @Test("viewModel maintains state consistency during multiple fetch operations")
     func viewModel_maintainsStateConsistencyDuringMultipleFetchOperations() async throws {
         // Given
         let firstMatches = [makeMatch(competition: .premierLeague)]
         let secondMatches = [makeMatch(competition: Competition(id: 2, title: "Championship"))]
-        let mockStorage = FavoritesStorageMediator.mock()
+        let mockRepository = MockFavouritesRepository()
         
         // When - First fetch
         let firstMockService = MockMatchService(matches: firstMatches)
-        let sut = CompetitionsListViewModel(matchService: firstMockService, storageMediator: mockStorage)
+        let sut = CompetitionsListViewModel(matchService: firstMockService, favoritesRepository: mockRepository)
         await sut.fetchMatches()
         
         // Then - First state
@@ -243,7 +225,7 @@ import Core
         
         // When - Second fetch with new service
         let secondMockService = MockMatchService(matches: secondMatches)
-        let sutWithNewService = CompetitionsListViewModel(matchService: secondMockService, storageMediator: mockStorage)
+        let sutWithNewService = CompetitionsListViewModel(matchService: secondMockService, favoritesRepository: mockRepository)
         await sutWithNewService.fetchMatches()
         
         // Then - Second state
@@ -260,10 +242,10 @@ private extension CompetitionsListViewModelTests {
     
     func makeViewModel(matches: [Match] = [], shouldFail: Bool = false) -> CompetitionsListViewModel {
         let mockService = MockMatchService(matches: matches, shouldFail: shouldFail)
-        let mockStorage = FavoritesStorageMediator.mock()
+        let mockRepository = MockFavouritesRepository()
         return CompetitionsListViewModel(
             matchService: mockService,
-            storageMediator: mockStorage
+            favoritesRepository: mockRepository
         )
     }
     

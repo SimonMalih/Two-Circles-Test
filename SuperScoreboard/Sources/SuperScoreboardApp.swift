@@ -15,7 +15,7 @@ struct SuperScoreboardApp: App {
                 viewModel: CompetitionsListViewModel(
                     // TODO: needs to be updated to a non factory implementation
                     matchService: RemoteMatchService(dataSource: DataSourceFactory.matchesDataSource()),
-                    storageMediator: FavoritesStorageMediator(storageAPI: UserDefaultsStorageAPI())
+                    favoritesRepository: FavouritesRepository(storageAPI: UserDefaultsStorageAPI()) 
                 )
             )
         }

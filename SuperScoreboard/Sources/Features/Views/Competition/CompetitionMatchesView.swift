@@ -38,7 +38,7 @@ struct CompetitionMatchesView: View {
                 competition: Competition(id: 1, title: "Premier League"),
                 competitionTitle: "Premier League",
                 matches: MatchCardData.premierLeagueMatches,
-                favoritesRepository: FavouritesRepository(storageMediator: .preview)
+                favoritesRepository: MockFavouritesRepository.preview
             )
         )
     }

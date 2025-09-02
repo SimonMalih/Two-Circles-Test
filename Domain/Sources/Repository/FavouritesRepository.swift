@@ -6,6 +6,7 @@
 //
 
 import Observation
+import Core
 
 /// Observable repository for managing favourite clubs with real-time updates.
 /// Provides a single source of truth for favourite state across the app.
@@ -14,10 +15,11 @@ public final class FavouritesRepository: FavouritesRepositoryProtocol {
     
     /// Set of favorite club IDs for efficient lookup
     public private(set) var favoriteClubIds: Set<Int> = []
-    private let storageMediator: FavoritesStorageMediator
+    private let storageAPI: StorageAPI
+    private let favoritesKey = "favorite_club_ids"
     
-    public init(storageMediator: FavoritesStorageMediator) {
-        self.storageMediator = storageMediator
+    public init(storageAPI: StorageAPI) {
+        self.storageAPI = storageAPI
         loadFavorites()
     }
     
@@ -64,19 +66,23 @@ public final class FavouritesRepository: FavouritesRepositoryProtocol {
     public func refresh() {
         loadFavorites()
     }
-        
-    private func loadFavorites() {
+
+}
+private extension FavouritesRepository {
+    
+    func loadFavorites() {
         do {
-            let ids = try storageMediator.fetchFavorites()
+            let ids = try storageAPI.load([Int].self, forKey: favoritesKey) ?? []
             favoriteClubIds = Set(ids)
         } catch {
+            print("Failed to retrieve favourite clubs with error: \(error)")
             favoriteClubIds = []
         }
     }
     
-    private func saveFavorites() {
+    func saveFavorites() {
         do {
-            try storageMediator.saveFavorites(Array(favoriteClubIds))
+            try storageAPI.save(Array(favoriteClubIds), forKey: favoritesKey)
         } catch {
             // In a production app, you might want to handle this error more gracefully
             print("Failed to save favorites: \(error)")

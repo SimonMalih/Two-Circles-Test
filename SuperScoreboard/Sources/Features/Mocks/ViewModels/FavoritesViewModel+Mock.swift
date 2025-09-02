@@ -15,13 +15,15 @@ extension FavoritesViewModel {
         matches: [Match] = [],
         shouldFail: Bool = false
     ) -> FavoritesViewModel {
-        let storageMediator = FavoritesStorageMediator.mock(
-            favoriteIds: favoriteIds,
-            shouldFail: shouldFail
+        let initialData: [String: Any] = favoriteIds.isEmpty ? [:] : ["favorite_club_ids": favoriteIds]
+        let mockStorageAPI = MockStorageAPI(
+            initialData: initialData,
+            shouldFailLoad: shouldFail,
+            shouldFailSave: shouldFail
         )
         
         return FavoritesViewModel(
-            storageMediator: storageMediator,
+            storageAPI: mockStorageAPI,
             matches: matches
         )
     }

@@ -59,7 +59,7 @@ struct MatchDetailView: View {
             .customFont(.headingsExtraLarge)
             
             Text(matchStatusText)
-                .customFont(.bodySmall, color: .red75)
+                .customFont(.bodySmall)
         }
     }
     

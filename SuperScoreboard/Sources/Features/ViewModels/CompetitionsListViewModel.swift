@@ -16,14 +16,12 @@ final class CompetitionsListViewModel {
     var viewState: ViewState = .loading
     var sectionsData: [CompetitionSectionData] = []
     
-    let storageMediator: FavoritesStorageMediator
     let favoritesRepository: FavouritesRepositoryProtocol
     private let matchService: MatchService
 
-    init(matchService: MatchService, storageMediator: FavoritesStorageMediator) {
+    init(matchService: MatchService, favoritesRepository: FavouritesRepositoryProtocol) {
         self.matchService = matchService
-        self.storageMediator = storageMediator
-        self.favoritesRepository = FavouritesRepository(storageMediator: storageMediator)
+        self.favoritesRepository = favoritesRepository
     }
     
     @MainActor

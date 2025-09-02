@@ -48,7 +48,7 @@ struct CompetitionsListView: View {
             .navigationDestination(isPresented: $showingFavorites) {
                 FavoritesView(
                     viewModel: FavoritesViewModel(
-                        storageMediator: viewModel.storageMediator,
+                        storageAPI: UserDefaultsStorageAPI(),
                         matches: viewModel.matches
                     )
                 )
@@ -184,7 +184,7 @@ extension CompetitionsListView {
     CompetitionsListView(
         viewModel: CompetitionsListViewModel(
             matchService: MockMatchService.loaded,
-            storageMediator: .preview
+            favoritesRepository: MockFavouritesRepository.preview
         )
     )
 }
@@ -193,7 +193,7 @@ extension CompetitionsListView {
     CompetitionsListView(
         viewModel: CompetitionsListViewModel(
             matchService: MockMatchService.empty,
-            storageMediator: .empty
+            favoritesRepository: MockFavouritesRepository.empty
         )
     )
 }
@@ -202,7 +202,7 @@ extension CompetitionsListView {
     CompetitionsListView(
         viewModel: CompetitionsListViewModel(
             matchService: MockMatchService.error,
-            storageMediator: .failing
+            favoritesRepository: MockFavouritesRepository.failing
         )
     )
 }

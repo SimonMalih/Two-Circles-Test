@@ -19,13 +19,14 @@ public final class FavoritesViewModel {
     public var selectedClubIds: Set<Int> = []
     public private(set) var existingFavoriteIds: Set<Int> = []
     
-    private let storageMediator: FavoritesStorageMediator
+    private let storageAPI: StorageAPI
+    private let favoritesKey = "favorite_club_ids"
     
     public init(
-        storageMediator: FavoritesStorageMediator,
+        storageAPI: StorageAPI,
         matches: [Match] = []
     ) {
-        self.storageMediator = storageMediator
+        self.storageAPI = storageAPI
         self.availableClubs = getUniqueClubs(from: matches)
         
         // Load existing favorites on initialization
@@ -71,7 +72,7 @@ public final class FavoritesViewModel {
         
         do {
             let selectedIds = Array(selectedClubIds)
-            try storageMediator.saveFavorites(selectedIds)
+            try storageAPI.save(selectedIds, forKey: favoritesKey)
             
             // Update existing favorites to reflect the new state
             existingFavoriteIds = selectedClubIds
@@ -88,7 +89,7 @@ public final class FavoritesViewModel {
     /// to ensure the UI shows the current favorite state.
     private func loadExistingFavorites() {
         do {
-            let favoriteIds = try storageMediator.fetchFavorites()
+            let favoriteIds = try storageAPI.load([Int].self, forKey: favoritesKey) ?? []
             existingFavoriteIds = Set(favoriteIds)
             selectedClubIds = Set(favoriteIds)
         } catch {
@@ -112,7 +113,7 @@ public final class FavoritesViewModel {
         errorMessage = nil
         
         do {
-            try storageMediator.clearAllFavorites()
+            try storageAPI.save([Int](), forKey: favoritesKey)
             selectedClubIds.removeAll()
             existingFavoriteIds.removeAll()
         } catch {
