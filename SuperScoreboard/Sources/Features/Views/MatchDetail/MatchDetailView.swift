@@ -16,7 +16,7 @@ struct MatchDetailView: View {
     private let teamViewPadding: CGFloat = 4
     
     var body: some View {
-        ScrollView {
+        ScrollView(showsIndicators: false) {
             VStack(spacing: 16) {
                 matchHeader
                 venueSection

@@ -117,7 +117,7 @@ struct FavoritesView: View {
     }
     
     private var clubGridView: some View {
-        ScrollView {
+        ScrollView(showsIndicators: false) {
             LazyVGrid(columns: columns, spacing: 16) {
                 ForEach(viewModel.availableClubs, id: \.id) { club in
                     ClubCardView(
