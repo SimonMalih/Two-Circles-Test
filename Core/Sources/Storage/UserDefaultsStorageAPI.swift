@@ -1,3 +1,10 @@
+//
+//  UserDefaultsStorageAPI.swift
+//  Core
+//
+//  Created by Simon Malih on 01/09/2025.
+//
+
 import Foundation
 
 /// UserDefaults-backed storage with JSON encoding for Codable types.

@@ -1,3 +1,10 @@
+//
+//  UserDefaultsWrapper.swift
+//  Core
+//
+//  Created by Simon Malih on 01/09/2025.
+//
+
 import Foundation
 
 /// A Sendable wrapper around UserDefaults.

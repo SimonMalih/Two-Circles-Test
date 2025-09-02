@@ -1,3 +1,10 @@
+//
+//  StorageAPI.swift
+//  Core
+//
+//  Created by Simon Malih on 01/09/2025.
+//
+
 /// Protocol for type-safe key-value storage operations with Codable support.
 public protocol StorageAPI: Sendable {
     
