@@ -4,142 +4,79 @@ iOS football scoreboard app built for Two Circles technical assessment. Features
 
 ---
 
-<table>
-<tr>
-<td width="50%">
+## 🏠 Home View States
 
-### 🏠 Home View - Loaded State
-<img src="screenshots/home-view-loaded.png" alt="Home View Loaded Screenshot" style="max-width: 250px; height: auto; display: block; margin: 0 auto;">
-<p align="center"><em>Main interface showing grouped matches by competition</em></p>
+<p align="center">
+<img src="screenshots/home-view-loaded.png" alt="Home View Loaded" width="200" style="display: inline-block; margin-right: 10px;">
+<img src="screenshots/home-view-error.png" alt="Home View Error" width="200" style="display: inline-block; margin-right: 10px;">
+<img src="screenshots/home-view-empty.png" alt="Home View Empty" width="200" style="display: inline-block; margin-right: 10px;">
+<img src="screenshots/home-view-loading.png" alt="Home View Loading" width="200" style="display: inline-block;">
+<br>
+<em>Loaded • Error • Empty • Loading</em>
+</p>
 
-- Real-time match data from remote API
-- Competition grouping and navigation
-- Localized strings throughout interface
+- **Loaded State**: Real-time match data with competition grouping
+- **Error State**: User-friendly error messages with retry functionality
+- **Empty State**: Clear messaging when no matches available
+- **Loading State**: Skeleton animations during data fetch
 
-</td>
-<td width="50%">
+---
 
-### 🔄 Home View - Loading State
-<img src="screenshots/home-view-loading.png" alt="Home View Loading Screenshot" style="max-width: 250px; height: auto; display: block; margin: 0 auto;">
-<p align="center"><em>Loading indicators while fetching match data</em></p>
+## ⚽ Match Components & Competition Views
 
-- Skeleton loading animations
-- Smooth transition to loaded state
-- User feedback during data fetch
+<p align="center">
+<img src="screenshots/matches-by-competition.png" alt="Matches by Competition" width="240" style="display: inline-block; margin-right: 10px;">
+<img src="screenshots/competition-matches.png" alt="Competition Matches" width="240" style="display: inline-block;">
+<br>
+<em>Competition Grouping • Competition Matches</em>
+</p>
 
-</td>
-</tr>
-<tr>
-<td width="50%">
+- **Match Cards**: Handle upcoming, live, and completed matches with heart badge icons for favorites
+- **Competition Grouping**: Automatic grouping with expandable sections and smooth animations
+- **Competition Matches**: Filtered view accessed by tapping headers, maintains all card functionality
 
-### ⚠️ Home View - Error State
-<img src="screenshots/home-view-error.png" alt="Home View Error Screenshot" style="max-width: 250px; height: auto; display: block; margin: 0 auto;">
-<p align="center"><em>Error handling with retry functionality</em></p>
+---
 
-- User-friendly error messages
-- Retry button for failed requests
-- Graceful fallback UI
+## ❤️ Favorites System
 
-</td>
-<td width="50%">
+<p align="center">
+<img src="screenshots/favorites-card.png" alt="Favorites Card" width="300" style="display: inline-block; margin-right: 10px;">
+<img src="screenshots/favorites-page.png" alt="Favorites Page" width="300" style="display: inline-block;">
+<br>
+<em>Favorites Card • Favorites Management Page</em>
+</p>
 
-### 📭 Home View - Empty State
-<img src="screenshots/home-view-empty.png" alt="Home View Empty Screenshot" style="max-width: 250px; height: auto; display: block; margin: 0 auto;">
-<p align="center"><em>Empty state when no matches are available</em></p>
+- **Favorites Card**: Quick access component with heart animations and navigation to full list
+- **Favorites Management**: Complete club selection with UserDefaults persistence and real-time updates
+- **Cross-App Integration**: Heart badges update instantly across all views, survives app restarts
 
-- Clear messaging for empty data
-- Guidance for user next steps
-- Consistent design language
+---
 
-</td>
-</tr>
-<tr>
-<td width="50%">
+## 🔍 Match Detail Page
 
-### ⚽ Match Card Component
-<img src="screenshots/match-card.png" alt="Match Card Screenshot" style="max-width: 250px; height: auto; display: block; margin: 0 auto;">
-<p align="center"><em>Individual match cards with status indicators</em></p>
+<p align="center">
+<img src="screenshots/match-detail.png" alt="Match Detail" width="300">
+<br>
+<em>Comprehensive match information and timeline</em>
+</p>
 
-- Handles upcoming, live, and completed matches
-- Heart badge icons show favorites on team badges
-- Real-time status and favorite updates
-
-</td>
-</tr>
-<tr>
-<td width="50%">
-
-### ❤️ Favorites Card Component
-<img src="screenshots/favorites-card.png" alt="Favorites Card Screenshot" style="max-width: 250px; height: auto; display: block; margin: 0 auto;">
-<p align="center"><em>Quick access to favorites management</em></p>
-
-- Tap to navigate to full club list
-- Heart animations for favorite state changes
-- Persistent favorites with UserDefaults
-
-</td>
-<td width="50%">
-
-### 🏆 Matches Grouped by Competition
-<img src="screenshots/matches-by-competition.png" alt="Matches by Competition Screenshot" style="max-width: 250px; height: auto; display: block; margin: 0 auto;">
-<p align="center"><em>Expandable competition sections with match listings</em></p>
-
-- Automatic competition grouping
-- Tap headers to view competition-specific matches
-- Expandable sections with smooth animations
-
-</td>
-</tr>
-<tr>
-<td width="50%">
-
-### 🔍 Match Detail Page
-<img src="screenshots/match-detail.png" alt="Match Detail Screenshot" style="max-width: 250px; height: auto; display: block; margin: 0 auto;">
-<p align="center"><em>Comprehensive match information and timeline</em></p>
-
-- Comprehensive match information
-- Goal timeline with timestamps
+- Comprehensive match information with goal timeline and timestamps
 - Venue, attendance, and competition details
+- Rich data presentation beyond basic match cards
 
-</td>
-<td width="50%">
+---
 
-### 🏆 Competition Matches Page
-<img src="screenshots/competition-matches.png" alt="Competition Matches Screenshot" style="max-width: 250px; height: auto; display: block; margin: 0 auto;">
-<p align="center"><em>Filtered view showing single competition matches</em></p>
+## 🎨 App Icon
 
-- Competition-filtered match view
-- Accessed by tapping competition headers
-- Maintains all match card functionality
-
-</td>
-</tr>
-<tr>
-<td width="50%">
-
-### ❤️ Favorites Management Page
-<img src="screenshots/favorites-page.png" alt="Favorites Page Screenshot" style="max-width: 250px; height: auto; display: block; margin: 0 auto;">
-<p align="center"><em>Complete club list for selecting favorites</em></p>
-
-- Complete club list for favorite selection
-- Persistent storage with UserDefaults
-- Real-time heart updates across entire app
-- Survives app restarts until deletion
-
-</td>
-<td width="50%">
-
-### 🎨 App Icon
-<img src="screenshots/app-icon.png" alt="App Icon Screenshot" style="max-width: 120px; height: auto; display: block; margin: 0 auto;">
-<p align="center"><em>Custom football-themed app icon design</em></p>
+<p align="center">
+<img src="screenshots/app-icon.png" alt="App Icon" width="100">
+<br>
+<em>Custom football-themed app icon design</em>
+</p>
 
 - Custom designed app icon
 - Football-themed branding
 - iOS standard icon sizes supported
-
-</td>
-</tr>
-</table>
 
 ---
 
