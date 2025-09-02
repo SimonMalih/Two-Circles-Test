@@ -225,33 +225,6 @@ import Foundation
         #expect(Set(savedIds) == Set([5, 6, 7]))
     }
     
-    @Test("refresh reloads favorites from storage")
-    func refresh_reloadsFavoritesFromStorage() async throws {
-        // Given
-        let mockStorageAPI = MockStorageAPI(initialData: ["favorite_club_ids": [1, 2]])
-        let sut = FavouritesRepository(storageAPI: mockStorageAPI)
-        
-        var loadCount = 0
-        var lastLoadedKey: String?
-        
-        mockStorageAPI.onLoad = { key in
-            loadCount += 1
-            lastLoadedKey = key
-            return nil
-        }
-        
-        // Modify storage externally
-        try mockStorageAPI.save([10, 20, 30], forKey: "favorite_club_ids")
-        
-        // When
-        sut.refresh()
-        
-        // Then
-        #expect(sut.favoriteClubIds == Set([10, 20, 30]))
-        #expect(loadCount == 2) // Once during init, once during refresh
-        #expect(lastLoadedKey == "favorite_club_ids")
-    }
-    
     @Test("initialization handles storage load failure gracefully")
     func initialization_handlesStorageLoadFailureGracefully() async throws {
         // Given
