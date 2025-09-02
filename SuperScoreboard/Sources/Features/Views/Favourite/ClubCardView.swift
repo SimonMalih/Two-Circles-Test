@@ -29,11 +29,18 @@ struct ClubCardView: View {
         .buttonStyle(PlainButtonStyle())
         .scaleEffect(isSelected ? 1.02 : 1.0)
         .animation(.easeInOut(duration: 0.2), value: isSelected)
+        .accessibilityLabel(Text("accessibility_club_selection".localizedKey(arguments: club.name, club.abbr)))
+        .accessibilityHint(Text("accessibility_club_selection_hint"))
+        .accessibilityAddTraits(.isButton)
+        .accessibilityAddTraits(isSelected ? [.isSelected] : [])
+        .accessibilityValue(isSelected ? Text("accessibility_selected") : Text("accessibility_not_selected"))
+        .accessibilityElement(children: .ignore)
     }
         
     private var clubBadge: some View {
         TeamBadgeView(teamId: club.id, abbreviation: club.abbr, isFavorite: false)
             .frame(height: 40)
+            .accessibilityHidden(true)
     }
     
     private var clubName: some View {
@@ -42,12 +49,14 @@ struct ClubCardView: View {
             .foregroundColor(isSelected ? .white : .primary)
             .multilineTextAlignment(.center)
             .lineLimit(2)
+            .accessibilityHidden(true)
     }
     
     private var clubAbbreviation: some View {
         Text(club.abbr)
             .font(.caption2)
             .foregroundColor(isSelected ? .white.opacity(0.8) : .secondary)
+            .accessibilityHidden(true)
     }
     
     private var cardBackground: some View {

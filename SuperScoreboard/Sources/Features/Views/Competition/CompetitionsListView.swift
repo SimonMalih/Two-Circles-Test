@@ -84,6 +84,8 @@ struct CompetitionsListView: View {
                     ProgressView()
                         .scaleEffect(0.8)
                         .padding(.top, 8)
+                        .accessibilityLabel(Text("accessibility_loading_matches"))
+                        .accessibilityAddTraits(.updatesFrequently)
                 }
                 
                 if !viewModel.sectionsData.isEmpty {
@@ -100,11 +102,17 @@ struct CompetitionsListView: View {
                                         title: section.title
                                     )
                                 }
-                                // Matches list (non-tappable container)
+                                .accessibleButton(
+                                    label: LocalizedStringKey("accessibility_competition_header".localizedKey(with: section.title)),
+                                    hint: "accessibility_competition_header_hint"
+                                )
+                                
+                                // Matches list
                                 ForEach(section.matches, id: \.match.id) { matchData in
                                     NavigableMatchCardView(matchData: matchData, favoritesRepository: viewModel.favoritesRepository)
                                 }
                             }
+                            .accessibilityElement(children: .contain)
                         }
                     }
                     
@@ -112,6 +120,10 @@ struct CompetitionsListView: View {
                         showingFavorites = true
                     }
                     .padding(.top, 32)
+                    .accessibleButton(
+                        label: "follow_your_favourites",
+                        hint: "accessibility_favorites_card_hint"
+                    )
                 }
             }
             .padding(.top, 8)
@@ -121,6 +133,7 @@ struct CompetitionsListView: View {
                 await viewModel.fetchMatches()
             }
         }
+        .accessibilityHint(Text("accessibility_pull_to_refresh"))
     }
 }
 
@@ -132,6 +145,8 @@ extension CompetitionsListView {
     private var loadingSpinner: some View {
         LoadingSpinnerView()
             .fillSpace()
+            .accessibilityLabel(Text("accessibility_loading_matches"))
+            .accessibilityAddTraits(.updatesFrequently)
     }
     
     private var emptyState: some View {
@@ -140,6 +155,7 @@ extension CompetitionsListView {
                 .font(.title2)
                 .fontWeight(.semibold)
                 .foregroundStyle(.primary)
+                .accessibleHeading(.h1)
             
             Text("check_back_later")
                 .font(.body)
@@ -152,8 +168,10 @@ extension CompetitionsListView {
                 }
             }
             .buttonStyle(.borderedProminent)
+            .accessibleButton(label: "refresh")
         }
         .fillSpace()
+        .accessibilityElement(children: .contain)
     }
     
     private var errorState: some View {
@@ -162,6 +180,7 @@ extension CompetitionsListView {
                 .font(.title2)
                 .fontWeight(.semibold)
                 .foregroundStyle(.primary)
+                .accessibleHeading(.h1)
             
             Text("failed_to_load_matches_description")
                 .font(.body)
@@ -175,8 +194,10 @@ extension CompetitionsListView {
                 }
             }
             .buttonStyle(.borderedProminent)
+            .accessibleButton(label: "try_again")
         }
         .fillSpace()
+        .accessibilityElement(children: .contain)
     }
 }
 

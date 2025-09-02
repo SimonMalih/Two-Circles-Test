@@ -36,16 +36,28 @@ struct TeamBadgeView: View {
                         .resizable()
                         .aspectRatio(contentMode: .fit)
                         .frame(height: 40)
+                        .accessibilityHidden(true)
                 } else {
                     fallbackBadge
+                        .accessibilityHidden(true)
                 }
             }
             .padding(.trailing, 5)
             
             if isFavorite {
                 followBadge
+                    .accessibilityHidden(true)
             }
         }
+        .accessibilityElement(children: .combine)
+        .accessibilityLabel(Text("accessibility_team_badge".localizedKey(with: teamName)))
+        .accessibilityValue(isFavorite ? Text("accessibility_favorite") : Text(""))
+    }
+    
+    // MARK: - Computed Properties
+    
+    private var teamName: String {
+        clubLogos[teamId] ?? abbreviation
     }
     
     private var fallbackBadge: some View {

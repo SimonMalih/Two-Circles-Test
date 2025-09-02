@@ -18,10 +18,13 @@ struct MatchTimeIndicatorView: View {
             // Live match - show clock with red background
             Text(match.clock?.label ?? "live")
                 .styleScoreTime(true)
+                .accessibilityAddTraits(.updatesFrequently)
+                .accessibilityLabel(Text("accessibility_live_status".localizedKey(with: match.clock?.label ?? "live".localized)))
         } else {
             // Upcoming or Completed match - show kickoff time
             Text(match.kickoff.millis.formattedKickoffTime)
                 .styleScoreTime(false)
+                .accessibilityLabel(Text(match.status == .completed ? "accessibility_full_time".localized : "accessibility_kickoff_time".localizedKey(with: match.kickoff.millis.formattedKickoffTime)))
         }
     }
 }

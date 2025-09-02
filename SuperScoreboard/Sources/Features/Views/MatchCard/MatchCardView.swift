@@ -22,6 +22,7 @@ struct MatchCardView: View {
         .frame(height: 96)
         .background(.surfaceBase)
         .clipShape(RoundedRectangle(cornerRadius: 12))
+        .accessibilityElement(children: .ignore)
     }
     
     private var homeTeamSection: some View {

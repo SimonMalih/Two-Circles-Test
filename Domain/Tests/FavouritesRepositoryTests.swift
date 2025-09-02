@@ -49,7 +49,7 @@ import Foundation
         #expect(sut.favoriteClubIds.count == 3)
         
         // Wait for save operation to be called
-        try await #expect(eventually: saveCalled == true, within: .seconds(1))
+        #expect(saveCalled == true)
         #expect(savedKey == "favorite_club_ids")
         if let savedIds = savedValue as? [Int] {
             #expect(savedIds.contains(3))
@@ -76,7 +76,7 @@ import Foundation
         
         // Then
         #expect(sut.favoriteClubIds.count == 2)
-        try await #expect(eventually: saveCalled == true, within: .seconds(1))
+        #expect(saveCalled == true)
     }
     
     @Test("removeFavorite removes club ID from favorites and persists changes")
@@ -102,7 +102,7 @@ import Foundation
         #expect(!sut.favoriteClubIds.contains(2))
         #expect(sut.favoriteClubIds.count == 2)
         
-        try await #expect(eventually: saveCalled == true, within: .seconds(1))
+        #expect(saveCalled == true)
         #expect(savedKey == "favorite_club_ids")
         if let savedIds = savedValue as? [Int] {
             #expect(!savedIds.contains(2))
@@ -129,7 +129,7 @@ import Foundation
         
         // Then
         #expect(sut.favoriteClubIds.count == 2)
-        try await #expect(eventually: saveCalled == true, within: .seconds(1))
+        #expect(saveCalled == true)
     }
     
     @Test("toggleFavorite adds club ID when not favorite")
@@ -155,7 +155,7 @@ import Foundation
         #expect(sut.favoriteClubIds.contains(3))
         #expect(sut.favoriteClubIds.count == 3)
         
-        try await #expect(eventually: saveCalled == true, within: .seconds(1))
+        #expect(saveCalled == true)
         #expect(savedKey == "favorite_club_ids")
         if let savedIds = savedValue as? [Int] {
             #expect(savedIds.contains(3))
@@ -185,7 +185,7 @@ import Foundation
         #expect(!sut.favoriteClubIds.contains(2))
         #expect(sut.favoriteClubIds.count == 2)
         
-        try await #expect(eventually: saveCalled == true, within: .seconds(1))
+        #expect(saveCalled == true)
         #expect(savedKey == "favorite_club_ids")
         if let savedIds = savedValue as? [Int] {
             #expect(!savedIds.contains(2))
@@ -214,7 +214,7 @@ import Foundation
         // Then
         #expect(sut.favoriteClubIds == Set([5, 6, 7]))
         
-        try await #expect(eventually: saveCalled == true, within: .seconds(1))
+        #expect(saveCalled == true)
         #expect(savedKey == "favorite_club_ids")
         if let savedIds = savedValue as? [Int] {
             #expect(Set(savedIds) == Set([5, 6, 7]))
@@ -248,7 +248,7 @@ import Foundation
         
         // Then
         #expect(sut.favoriteClubIds == Set([10, 20, 30]))
-        try await #expect(eventually: loadCount == 2, within: .seconds(1)) // Once during init, once during refresh
+        #expect(loadCount == 2) // Once during init, once during refresh
         #expect(lastLoadedKey == "favorite_club_ids")
     }
     

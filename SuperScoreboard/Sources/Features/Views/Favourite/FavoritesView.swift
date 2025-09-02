@@ -39,6 +39,7 @@ struct FavoritesView: View {
                 viewModel.resetSelections()
             }
         }
+        .accessibilityElement(children: .contain)
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {
                 Button("save") {
@@ -81,11 +82,16 @@ struct FavoritesView: View {
         VStack(spacing: 16) {
             ProgressView()
                 .scaleEffect(1.2)
+                .accessibilityLabel(Text("loading_clubs"))
+                .accessibilityAddTraits(.updatesFrequently)
             Text("loading_clubs")
                 .font(.body)
                 .foregroundColor(.secondary)
+                .accessibilityHidden(true)
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .accessibilityElement(children: .combine)
+        .accessibilityLabel(Text("loading_clubs"))
     }
     
     private var emptyStateView: some View {
@@ -93,10 +99,12 @@ struct FavoritesView: View {
             Image(systemName: "football.fill")
                 .font(.system(size: 48))
                 .foregroundColor(.secondary)
+                .accessibilityHidden(true)
             
             Text("no_clubs_available")
                 .font(.title3.weight(.medium))
                 .foregroundColor(.primary)
+                .accessibleHeading(.h1)
             
             Text("match_data_unavailable")
                 .font(.body)
@@ -105,6 +113,7 @@ struct FavoritesView: View {
                 .padding(.horizontal, 32)
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .accessibilityElement(children: .contain)
     }
     
     private var clubGridView: some View {
@@ -122,6 +131,8 @@ struct FavoritesView: View {
             .padding(.horizontal, 16)
             .padding(.top, 16)
         }
+        .accessibilityLabel(Text("select_favorites_title"))
+        .accessibilityHint(Text("accessibility_scroll_clubs_hint"))
     }
     
     private var saveButtonView: some View {
