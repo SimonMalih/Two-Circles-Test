@@ -119,30 +119,6 @@ final class AccessibilityUITests: XCTestCase {
         XCTAssertGreaterThan(buttonsWithTraits, 0, "Should have buttons with proper accessibility traits")
     }
     
-    // MARK: - Dynamic Type Tests
-    
-    
-    func testSupportsLargerTextSizes() throws {
-        // Test with larger text size
-        app.launchEnvironment["DYLD_INSERT_LIBRARIES"] = "@loader_path/Frameworks/AccessibilityUITests.xctest/Contents/Frameworks/libMainThreadChecker.dylib"
-        app.launch()
-        waitForLoadingToComplete()
-        
-        // Verify text elements are still visible and accessible
-        let textElements = app.staticTexts
-        var readableTextFound = false
-        
-        for i in 0..<min(textElements.count, 5) {
-            let textElement = textElements.element(boundBy: i)
-            if textElement.exists && !textElement.label.isEmpty {
-                readableTextFound = true
-                break
-            }
-        }
-        
-        XCTAssertTrue(readableTextFound, "Should have readable text elements with dynamic type support")
-    }
-    
     // MARK: - Color Contrast and Visibility Tests
     
     

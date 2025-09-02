@@ -402,7 +402,7 @@ private extension FavoritesViewModelTests {
         matches: [Match] = [],
         shouldFail: Bool = false
     ) -> FavoritesViewModel {
-        let initialData: [String: Any] = favoriteIds.isEmpty ? [:] : ["favorite_club_ids": favoriteIds]
+        let initialData: [String: Codable] = favoriteIds.isEmpty ? [:] : ["favorite_club_ids": favoriteIds]
         let mockStorageAPI = MockStorageAPI(
             initialData: initialData,
             shouldFail: shouldFail
