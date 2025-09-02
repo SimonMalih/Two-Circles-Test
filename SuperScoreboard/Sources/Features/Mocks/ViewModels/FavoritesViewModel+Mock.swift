@@ -18,8 +18,7 @@ extension FavoritesViewModel {
         let initialData: [String: Any] = favoriteIds.isEmpty ? [:] : ["favorite_club_ids": favoriteIds]
         let mockStorageAPI = MockStorageAPI(
             initialData: initialData,
-            shouldFailLoad: shouldFail,
-            shouldFailSave: shouldFail
+            shouldFail: shouldFail
         )
         
         return FavoritesViewModel(

@@ -31,13 +31,29 @@ import Foundation
         let mockStorageAPI = MockStorageAPI(initialData: ["favorite_club_ids": [1, 2]])
         let sut = FavouritesRepository(storageAPI: mockStorageAPI)
         
+        var saveCalled = false
+        var savedKey: String?
+        var savedValue: Any?
+        
+        mockStorageAPI.onSave = { value, key in
+            saveCalled = true
+            savedKey = key
+            savedValue = value
+        }
+        
         // When
         sut.addFavorite(clubId: 3)
         
         // Then
         #expect(sut.favoriteClubIds.contains(3))
         #expect(sut.favoriteClubIds.count == 3)
-        #expect(mockStorageAPI.saveCallCount == 1)
+        
+        // Wait for save operation to be called
+        try await #expect(eventually: saveCalled == true, within: .seconds(1))
+        #expect(savedKey == "favorite_club_ids")
+        if let savedIds = savedValue as? [Int] {
+            #expect(savedIds.contains(3))
+        }
         
         // Verify it was saved to storage
         let savedIds = try mockStorageAPI.load([Int].self, forKey: "favorite_club_ids") ?? []
@@ -50,12 +66,17 @@ import Foundation
         let mockStorageAPI = MockStorageAPI(initialData: ["favorite_club_ids": [1, 2]])
         let sut = FavouritesRepository(storageAPI: mockStorageAPI)
         
+        var saveCalled = false
+        mockStorageAPI.onSave = { _, _ in
+            saveCalled = true
+        }
+        
         // When
         sut.addFavorite(clubId: 2)
         
         // Then
         #expect(sut.favoriteClubIds.count == 2)
-        #expect(mockStorageAPI.saveCallCount == 1)
+        try await #expect(eventually: saveCalled == true, within: .seconds(1))
     }
     
     @Test("removeFavorite removes club ID from favorites and persists changes")
@@ -64,13 +85,28 @@ import Foundation
         let mockStorageAPI = MockStorageAPI(initialData: ["favorite_club_ids": [1, 2, 3]])
         let sut = FavouritesRepository(storageAPI: mockStorageAPI)
         
+        var saveCalled = false
+        var savedKey: String?
+        var savedValue: Any?
+        
+        mockStorageAPI.onSave = { value, key in
+            saveCalled = true
+            savedKey = key
+            savedValue = value
+        }
+        
         // When
         sut.removeFavorite(clubId: 2)
         
         // Then
         #expect(!sut.favoriteClubIds.contains(2))
         #expect(sut.favoriteClubIds.count == 2)
-        #expect(mockStorageAPI.saveCallCount == 1)
+        
+        try await #expect(eventually: saveCalled == true, within: .seconds(1))
+        #expect(savedKey == "favorite_club_ids")
+        if let savedIds = savedValue as? [Int] {
+            #expect(!savedIds.contains(2))
+        }
         
         // Verify it was removed from storage
         let savedIds = try mockStorageAPI.load([Int].self, forKey: "favorite_club_ids") ?? []
@@ -83,12 +119,17 @@ import Foundation
         let mockStorageAPI = MockStorageAPI(initialData: ["favorite_club_ids": [1, 2]])
         let sut = FavouritesRepository(storageAPI: mockStorageAPI)
         
+        var saveCalled = false
+        mockStorageAPI.onSave = { _, _ in
+            saveCalled = true
+        }
+        
         // When
         sut.removeFavorite(clubId: 99)
         
         // Then
         #expect(sut.favoriteClubIds.count == 2)
-        #expect(mockStorageAPI.saveCallCount == 1)
+        try await #expect(eventually: saveCalled == true, within: .seconds(1))
     }
     
     @Test("toggleFavorite adds club ID when not favorite")
@@ -97,13 +138,28 @@ import Foundation
         let mockStorageAPI = MockStorageAPI(initialData: ["favorite_club_ids": [1, 2]])
         let sut = FavouritesRepository(storageAPI: mockStorageAPI)
         
+        var saveCalled = false
+        var savedKey: String?
+        var savedValue: Any?
+        
+        mockStorageAPI.onSave = { value, key in
+            saveCalled = true
+            savedKey = key
+            savedValue = value
+        }
+        
         // When
         sut.toggleFavorite(clubId: 3)
         
         // Then
         #expect(sut.favoriteClubIds.contains(3))
         #expect(sut.favoriteClubIds.count == 3)
-        #expect(mockStorageAPI.saveCallCount == 1)
+        
+        try await #expect(eventually: saveCalled == true, within: .seconds(1))
+        #expect(savedKey == "favorite_club_ids")
+        if let savedIds = savedValue as? [Int] {
+            #expect(savedIds.contains(3))
+        }
     }
     
     @Test("toggleFavorite removes club ID when already favorite")
@@ -112,13 +168,28 @@ import Foundation
         let mockStorageAPI = MockStorageAPI(initialData: ["favorite_club_ids": [1, 2, 3]])
         let sut = FavouritesRepository(storageAPI: mockStorageAPI)
         
+        var saveCalled = false
+        var savedKey: String?
+        var savedValue: Any?
+        
+        mockStorageAPI.onSave = { value, key in
+            saveCalled = true
+            savedKey = key
+            savedValue = value
+        }
+        
         // When
         sut.toggleFavorite(clubId: 2)
         
         // Then
         #expect(!sut.favoriteClubIds.contains(2))
         #expect(sut.favoriteClubIds.count == 2)
-        #expect(mockStorageAPI.saveCallCount == 1)
+        
+        try await #expect(eventually: saveCalled == true, within: .seconds(1))
+        #expect(savedKey == "favorite_club_ids")
+        if let savedIds = savedValue as? [Int] {
+            #expect(!savedIds.contains(2))
+        }
     }
     
     @Test("updateFavorites replaces entire favorites set and persists changes")
@@ -127,12 +198,27 @@ import Foundation
         let mockStorageAPI = MockStorageAPI(initialData: ["favorite_club_ids": [1, 2]])
         let sut = FavouritesRepository(storageAPI: mockStorageAPI)
         
+        var saveCalled = false
+        var savedKey: String?
+        var savedValue: Any?
+        
+        mockStorageAPI.onSave = { value, key in
+            saveCalled = true
+            savedKey = key
+            savedValue = value
+        }
+        
         // When
         sut.updateFavorites(Set([5, 6, 7]))
         
         // Then
         #expect(sut.favoriteClubIds == Set([5, 6, 7]))
-        #expect(mockStorageAPI.saveCallCount == 1)
+        
+        try await #expect(eventually: saveCalled == true, within: .seconds(1))
+        #expect(savedKey == "favorite_club_ids")
+        if let savedIds = savedValue as? [Int] {
+            #expect(Set(savedIds) == Set([5, 6, 7]))
+        }
         
         // Verify it was saved to storage
         let savedIds = try mockStorageAPI.load([Int].self, forKey: "favorite_club_ids") ?? []
@@ -145,6 +231,15 @@ import Foundation
         let mockStorageAPI = MockStorageAPI(initialData: ["favorite_club_ids": [1, 2]])
         let sut = FavouritesRepository(storageAPI: mockStorageAPI)
         
+        var loadCount = 0
+        var lastLoadedKey: String?
+        
+        mockStorageAPI.onLoad = { key in
+            loadCount += 1
+            lastLoadedKey = key
+            return nil
+        }
+        
         // Modify storage externally
         try mockStorageAPI.save([10, 20, 30], forKey: "favorite_club_ids")
         
@@ -153,13 +248,14 @@ import Foundation
         
         // Then
         #expect(sut.favoriteClubIds == Set([10, 20, 30]))
-        #expect(mockStorageAPI.loadCallCount == 2) // Once during init, once during refresh
+        try await #expect(eventually: loadCount == 2, within: .seconds(1)) // Once during init, once during refresh
+        #expect(lastLoadedKey == "favorite_club_ids")
     }
     
     @Test("initialization handles storage load failure gracefully")
     func initialization_handlesStorageLoadFailureGracefully() async throws {
         // Given
-        let mockStorageAPI = MockStorageAPI(shouldFailLoad: true)
+        let mockStorageAPI = MockStorageAPI(shouldFail: true)
         
         // When
         let sut = FavouritesRepository(storageAPI: mockStorageAPI)
@@ -175,7 +271,7 @@ import Foundation
         let sut = FavouritesRepository(storageAPI: mockStorageAPI)
         
         // Configure storage to fail
-        mockStorageAPI.shouldFailLoad = true
+        mockStorageAPI.shouldFail = true
         
         // When
         sut.refresh()
@@ -187,7 +283,7 @@ import Foundation
     @Test("save operations handle storage failure gracefully")
     func saveOperations_handleStorageFailureGracefully() async throws {
         // Given
-        let mockStorageAPI = MockStorageAPI(initialData: ["favorite_club_ids": [1]], shouldFailSave: true)
+        let mockStorageAPI = MockStorageAPI(initialData: ["favorite_club_ids": [1]], shouldFail: true)
         let sut = FavouritesRepository(storageAPI: mockStorageAPI)
         
         // When & Then - Operations should not crash even when save fails

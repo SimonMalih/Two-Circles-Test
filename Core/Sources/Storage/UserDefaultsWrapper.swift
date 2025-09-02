@@ -15,15 +15,15 @@ public final class UserDefaultsWrapper: @unchecked Sendable {
     }
     
     public func data(forKey key: String) -> Data? {
-        return defaults.data(forKey: key)
+        defaults.data(forKey: key)
     }
     
     public func object(forKey key: String) -> Any? {
-        return defaults.object(forKey: key)
+        defaults.object(forKey: key)
     }
     
     public func string(forKey key: String) -> String? {
-        return defaults.string(forKey: key)
+        defaults.string(forKey: key)
     }
     
     public func removeObject(forKey key: String) {

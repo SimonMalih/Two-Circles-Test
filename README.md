@@ -33,4 +33,15 @@ For all of your up to the minute football scores from around the globe.
 
 ## Candidate Notes
 
+### TODO List
+Add app icon
+SwiftLint
+Add correct font
+
+### Extra Features
+match detail view
+Add Launch screen
+support dark mode
+
+---
 (Add your notes here: approach, assumptions, trade-offs, anything you’d like us to know.)

@@ -402,12 +402,13 @@ private extension FavoritesViewModelTests {
         matches: [Match] = [],
         shouldFail: Bool = false
     ) -> FavoritesViewModel {
-        let storageMediator = FavoritesStorageMediator.mock(
-            favoriteIds: favoriteIds,
+        let initialData: [String: Any] = favoriteIds.isEmpty ? [:] : ["favorite_club_ids": favoriteIds]
+        let mockStorageAPI = MockStorageAPI(
+            initialData: initialData,
             shouldFail: shouldFail
         )
         return FavoritesViewModel(
-            storageMediator: storageMediator,
+            storageAPI: mockStorageAPI,
             matches: matches
         )
     }
