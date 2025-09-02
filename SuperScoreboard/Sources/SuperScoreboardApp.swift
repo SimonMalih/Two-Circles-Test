@@ -13,7 +13,6 @@ struct SuperScoreboardApp: App {
         WindowGroup {
             CompetitionsListView(
                 viewModel: CompetitionsListViewModel(
-                    // TODO: needs to be updated to a non factory implementation
                     matchService: RemoteMatchService(dataSource: DataSourceFactory.matchesDataSource()),
                     favoritesRepository: FavouritesRepository(storageAPI: UserDefaultsStorageAPI()) 
                 )

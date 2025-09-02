@@ -9,7 +9,6 @@ import SwiftUI
 import Domain
 
 // Displays match time - live clock or kickoff time
-// TODO: show maybe the date of completed match like 05/04 or 16/10/24
 struct MatchTimeIndicatorView: View {
     let match: Match
     

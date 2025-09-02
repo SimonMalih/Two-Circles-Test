@@ -141,7 +141,6 @@ struct CompetitionsListView: View {
 
 extension CompetitionsListView {
 
-    // TODO: update colour of spinner
     private var loadingSpinner: some View {
         LoadingSpinnerView()
             .fillSpace()
