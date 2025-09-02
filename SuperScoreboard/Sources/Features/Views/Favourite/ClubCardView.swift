@@ -35,6 +35,7 @@ struct ClubCardView: View {
         .accessibilityAddTraits(isSelected ? [.isSelected] : [])
         .accessibilityValue(isSelected ? Text("accessibility_selected") : Text("accessibility_not_selected"))
         .accessibilityElement(children: .ignore)
+        .accessibilityIdentifier("club_card_\(club.id)")
     }
         
     private var clubBadge: some View {

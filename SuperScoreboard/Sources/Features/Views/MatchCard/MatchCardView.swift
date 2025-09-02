@@ -23,6 +23,7 @@ struct MatchCardView: View {
         .background(.surfaceBase)
         .clipShape(RoundedRectangle(cornerRadius: 12))
         .accessibilityElement(children: .ignore)
+        .accessibilityIdentifier("match_card_\(matchData.match.id)")
     }
     
     private var homeTeamSection: some View {

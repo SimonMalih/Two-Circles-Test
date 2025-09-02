@@ -21,6 +21,7 @@ struct CompetitionHeaderView: View {
                 .frame(width: 24, height: 24)
         }
         .padding(.vertical, 6)
+        .accessibilityIdentifier("competition_header_\(competitionId)")
     }
 }
 

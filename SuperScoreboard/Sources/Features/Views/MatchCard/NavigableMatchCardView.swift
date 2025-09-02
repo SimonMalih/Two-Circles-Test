@@ -30,6 +30,7 @@ struct NavigableMatchCardView: View {
         .accessibilityAction(named: Text("accessibility_match_details_action")) {
             showMatchDetail = true
         }
+        .accessibilityIdentifier("navigable_match_card_\(matchData.match.id)")
     }
     
     // MARK: - Accessibility
