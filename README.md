@@ -33,4 +33,6 @@ For all of your up to the minute football scores from around the globe.
 
 ## Candidate Notes
 
-(Add your notes here: approach, assumptions, trade-offs, anything you’d like us to know.)
+For a comprehensive overview of the implementation, please see:
+- **[IMPLEMENTATION_SHOWCASE.md](./IMPLEMENTATION_SHOWCASE.md)** - Visual showcase of all implemented features with screenshots
+- **[ASSIGNMENT_REFLECTION.md](./ASSIGNMENT_REFLECTION.md)** - Technical reflection covering strengths, areas for improvement, and future enhancements
